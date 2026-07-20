@@ -1,0 +1,31 @@
+{
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "detail": 0,
+            "format": 0,
+            "mode": "normal",
+            "style": "",
+            "text": "Muslim Americans in Public Service (MAPS) thanks its members, allies, and leaders from across all branches of government for coming together for our 4th Annual Summer DC Networking Event last week on Capitol Hill! The annual gathering drew Muslim public servants from at least 6 states to strengthen community at a time when its needed the most. The event was sponsored by our partners at Islamic Relief, Helping Hands for Relief and Development (HHRD ), Muslim Public Affairs Council Foundation (MPAC), Guidance Residential, Islamic Scholarship Fund, and the Congressional Muslim Staffers Association (CMSA).",
+            "type": "text",
+            "version": 1
+          }
+        ],
+        "direction": null,
+        "format": "",
+        "indent": 0,
+        "type": "paragraph",
+        "version": 1,
+        "textFormat": 0,
+        "textStyle": ""
+      }
+    ],
+    "direction": null,
+    "format": "",
+    "indent": 0,
+    "type": "root",
+    "version": 1
+  }
+}

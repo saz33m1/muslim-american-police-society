@@ -1,0 +1,281 @@
+{
+  "slug": "programs/legal-advocacy",
+  "title": "Legal Advocacy",
+  "richText": {
+    "root": {
+      "children": [
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Legal Advocacy",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h1"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS actively and comprehensively supports its Members, Associates, and partner networks transform their professional journey with strategic assistance designed for Muslim American public servants. Break through barriers and unlock your potential in government and civic leadership.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Know Your Rights. Understand Redress. Navigate Processes.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS’ ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "Legal Advocacy Committee (LAC) ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "is proud to offer legal information in support of members’ facing adversity in their public service careers. Learn more below and either ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 1,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "Join MAPS",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "link",
+              "version": 3,
+              "fields": {
+                "linkType": "custom",
+                "newTab": true,
+                "url": "../join.html"
+              },
+              "id": "6a3c10ea5c46ff7a48daa953"
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": " to submit a request, or offer your services",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": " ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 1,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "here",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "link",
+              "version": 3,
+              "fields": {
+                "linkType": "custom",
+                "newTab": true,
+                "url": "http://url4533.mapsnational.org/ls/click?upn=u001.TS9dYlFA-2FBy7pElb-2BOvown6poOgeMKetmLuaSZutwbRqIa5UKP768UkPWXz-2BGsqCI71QpT54vKEPMd0ia6IlQjl-2FcBFw3eTpbDHArwKQT6-2FGfDmeHOAyFM62CRPkjs3cQaFVL8lbPmMlZF6mu-2F4LYA-3D-3Dij0o_Dg8G5P-2BNw87URFOQr1Hxb-2BVoQhvk9dJcLpc3hfvMV0Qrri6XnHySXH2ocaM3YEm1tugVQrCGXxUxishMHOxU6HnFnO-2FU0X50fm9Th6x7vXwjknoyrzNHBlY-2FOkirz9xVdEt4niC6geaXbqGukHpTUeCI9ENHXZRidb9AFGorAu2GGwHP0IdGcDx5qxGBtvaLJ3Wvt-2FvBuCHm8mM2lOZ11yVUX2MP9VeyuK6Je7ppLqKV9ovSVK7m3Ix-2F97-2BKmfCEpfgDtjdQWr1H5TFiqWnpudu0IArf5jLqKB2N5BEuQQdpW7Mu5TvNhZl-2BVTS5tDMQPKFbC-2FIT7TpSO9EZP3DgC1sNJboFoujKxZ40kM9Z8lv8VzvJrQ2Xh48wGhcjtZEiX2tX85AxGWZRv1ri-2BTgWlHkT3umVG1ddofjH7tmKzdRxeVXPrmyFFlGH645ANwZg-2FMJDWryLBV5yM9h8KlxzUp5zJtWcPFR1T6ehtBSjYKA-3D"
+              },
+              "id": "6a3c10ea5c46ff7a48daa954"
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": ".",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS Advocacy & Accommodation Recordings",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Muslim Americans in Public Service shares its exclusive webinars alongside partners and allies on your rights as an employee, as well as trends, challenges and opportunities facing Muslim American public servants. These recorded sessions, events, and training webinars are publicly available, while internal and non-public programs are only shared on MAPS member portal. Join MAPS as a Member or Associate today to gain full access ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 1,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "here",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "link",
+              "version": 3,
+              "fields": {
+                "linkType": "custom",
+                "newTab": false,
+                "url": "../join.html"
+              },
+              "id": "6a3c10ea5c46ff7a48daa955"
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": ".",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        }
+      ],
+      "direction": null,
+      "format": "",
+      "indent": 0,
+      "type": "root",
+      "version": 1
+    }
+  },
+  "images": [
+    {
+      "src": "../images/17_1.webp",
+      "filename": "17_1.webp",
+      "id": 1676
+    },
+    {
+      "src": "../images/24_1.webp",
+      "filename": "24_1.webp",
+      "id": 1677
+    },
+    {
+      "src": "../images/25_1.webp",
+      "filename": "25_1.webp",
+      "id": 1678
+    },
+    {
+      "src": "../images/14_1.webp",
+      "filename": "14_1.webp",
+      "id": 1679
+    }
+  ],
+  "blocks": []
+}

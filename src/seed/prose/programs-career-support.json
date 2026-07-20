@@ -1,0 +1,155 @@
+{
+  "slug": "programs/career-support",
+  "title": "Career Support",
+  "richText": {
+    "root": {
+      "children": [
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Advance your career, serve your community and country",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h1"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS actively and comprehensively supports its Members, Associates, and partner networks transform their professional journey with strategic assistance designed for Muslim American public servants. Break through barriers and unlock your potential in government and civic leadership.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Comprehensive career support resources for all career levels",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Navigate your public service journey with targeted support designed to break barriers and amplify your potential in government and civic leadership. MAPS Professional Development portfolio entails three unique areas of support, offering the best of our community and institutional access has to offer.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS Academy Training Series",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "While many of our MAPS Academy offerings on navigating specific public service processes from the most junior internship and entry level placements to the most senior appointments and Senate confirmations remain internal and exclusive to members, MAPS releases several recorded sessions to the public.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        }
+      ],
+      "direction": null,
+      "format": "",
+      "indent": 0,
+      "type": "root",
+      "version": 1
+    }
+  },
+  "images": [
+    {
+      "src": "../images/110.webp",
+      "filename": "110.webp",
+      "id": 1672
+    },
+    {
+      "src": "../images/70.webp",
+      "filename": "70.webp",
+      "id": 1673
+    },
+    {
+      "src": "../images/29.webp",
+      "filename": "29.webp",
+      "id": 1674
+    },
+    {
+      "src": "../images/102.webp",
+      "filename": "102.webp",
+      "id": 1675
+    }
+  ],
+  "blocks": []
+}

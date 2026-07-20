@@ -1,0 +1,1149 @@
+{
+  "slug": "about-us/mission",
+  "title": "Mission, Values & History",
+  "richText": {
+    "root": {
+      "children": [
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Mission, Values & History",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h1"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Our mission is to support the career, community, and workplace development of Muslim American public servants and serve as a catalyst, resource, and force multiplier for the associations that represent and support them.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS aims to expand and harness the rich, collective contributions of Muslim Americans across public service sectors to build a more just and equitable United States.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Learn more about our work below, or sign up to join MAPS ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 1,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "here",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "link",
+              "version": 3,
+              "fields": {
+                "linkType": "custom",
+                "newTab": true,
+                "url": "https://mapsnational.org/join"
+              },
+              "id": "6a3c10e95c46ff7a48daa952"
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": ".",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Mission",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "Career Support: We expand professional capacity and cultivate the next generation of American Muslim public service leaders.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "‍",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS creates and promotes skill development, professional networking, mentorship, career education and advancement resources among members and within MAPS chapters and partners. Broadening pipelines into public service is critical to not only MAPS, but our broader mission as American public servants. MAPS also shares resources and engages and partners with government agencies and local and national service organizations to ensure Muslim American young professionals are part of the national efforts to build a public service workforce that looks like America.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "Community Building: We build community across government & civil society.  ",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "‍",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS fosters thriving and open communities and serves as a connector among Muslim American public servants within all branches and levels of government. MAPS is committed to sharing resources to public servants interested in forming new employee-led organizations, or regional MAPS chapters at their public institutions or local communities, and support and coordinate existing Muslim employee and professional associations and their programs and activities.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "Workplace Development: We support conducive workplaces to unlock potential by advancing understanding and accommodation in the public sector.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 1,
+              "mode": "normal",
+              "style": "",
+              "text": "‍",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS facilitates inclusive spaces for Muslim American public service professionals and promotes their further contributions and achievements. MAPS serves as a strategic partner in fostering a culture of respect, understanding, and accommodation within public institutions and will support existing institutional efforts to maintain safe workplaces free of discrimination.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 1,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Values",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS believes that the United States is enriched by the contributions of Muslim Americans and other people of faith. A more inclusive Federal, State and local workforce strengthens the institutions they serve and ultimately, the American public, by providing a broad range of skills and a diversity of experiences and perspectives.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS draws from Islamic faith traditions to promote the values of public service, freedom of religion, community building, and partnership and solidarity, while adhering to the additional values of inclusion, confidentiality, and neutrality.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "1. Public Service",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS Members have made service to others a core part of their careers, their lives, and in many cases, their identity. They volunteer for their communities, offer support to those in need of it, and devote years to crafting, building, or improving national, state, or local programs, policies, and services. Supporting their work, and ushering others toward it, is a prime function of MAPS, and is rooted in faith traditions and examples.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“The best of people are those who are most beneficial to people” (",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 2,
+              "mode": "normal",
+              "style": "",
+              "text": "Hadith",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": " of the Prophet Muhammad, Al-Tabarani, Al-Mu’jam Al-Awsaṭ, 5937)\"",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "2. Religious Freedom",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "As faith is a large part of the lives of countless Americans, the freedom to believe and practice authentically and without hinderance, discrimination, or persecution is a cornerstone of American democracy. Religious freedom, accommodation, tolerance and understanding are also key values of MAPS, its Members, and partner organizations. Members of MAPS are also committed to public institutions that allow employees to observe their religious beliefs. Together, we can build stronger, more conducive, and just workplaces where the important functions of public service can more effectively and productively undertaken for a broader segment of Americans.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“There shall be no coercion in matters of faith.” (Quran 2:256);",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“For you is your faith, and for me, my faith.” (Quran 109:6)\"",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "3. Community Building",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Community building, which entails the open and inclusive agglomeration of qualified professionals, channeling of resources toward their individual careers and interpersonal bonds, and facilitating and supporting formalized and communal action are all daily functions and priorities of MAPS. It is how all of its goals and outcomes are possible.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“Never will God change the condition of a people until they change it themselves,” (Quran 13:11);",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“Help ye one another unto righteousness and piety. But help not one another unto sin and transgression,” (Quran 5:2);",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“Whoever fulfills the needs of his brother, God will fulfill his needs; whoever removes the troubles of his brother, God will remove one of his troubles” (",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 2,
+              "mode": "normal",
+              "style": "",
+              "text": "Hadith",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": " of the Prophet Muhammad, Al-Bukhari, Chapter 47, Al-Mazalim, 2442).",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "4. Partnership & Solidarity",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS builds its community while actively supporting, engaging, and collaborating with its partners to advance shared goals while reducing redundant efforts or potential conflict. These include formal organizations, informal communities, national and local non-profits, Federal, State and local governments, and feeder networks with overlapping constituencies or objectives to mint the newest public service leaders of tomorrow.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "“We have made you into nations and tribes, so that you may come to know one another.” (Quran 49:13)",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "quote",
+          "version": 1
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "5. Broad-Based Inclusion",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS believes that the mission and community it serves are best represented by a diverse and inclusive membership and leadership, and that the success of the organization depends on broadening pipelines, casting wider nets, and considering and accommodating the full range of individuals within the Muslim American community. MAPS upholds and preserves a common identity as Muslim Americans over any particular national origin, ethnicity, race, sect, faith tradition or jurisprudence, in order to ensure all have an opportunity to find community, career support, and the ultimate fulfillment of their potential as professionals and public servants.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Beyond inclusion based on identity, MAPS also emphasizes merit over inclusion of the powerful, popular, or visible within our community; ensures professional and social access and opportunities are shared broadly and indiscriminately among the membership; and celebrates senior public servants, trailblazers, and leaders within our community that serve as resources to MAPS and its members, rather than those who embark on their pathways, contributions, and achievements without accommodating organized efforts to understand and replicate their example.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "6. Security & Confidentiality",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "MAPS safeguards the confidentiality and data security of its membership and limits exposure of sensitive data and membership information to the general public where members have not opted in or elected to disclose publicly (such as attendance of public events, registration for a partner program, or affiliation on social media).      MAPS never sells or share membership data to external parties, and restricts internal access to full membership data.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "7. Neutrality & Focus",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Apart from non-partisan restrictions under law, MAPS avoids unnecessary bias or perceptions of its membership or organization to take political stances, advocacy positions, leanings or affiliations beyond supporting, representing, or advocating for Muslim American public servants; other public servants, public service-oriented communities or affinity organizations; their professional circumstances or conditions; or public service in general.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "History",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "To best understand our work and where we hope to go together, it helps to know where we came from as an organization and national network, and the context and landscape that brought both about. MAPS has focused on targeting this combination of low transparency and minimalistic institutional support.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "‍Federal Representation",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h5"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "The need for greater transparency and institutional support led to the formation of MAPS. In 2020, recognizing the lack of representation for Muslim American public servants, the organization was established to bridge this gap. Looking ahead, MAPS aims to empower these professionals to contribute to a more equitable society.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "An Interagency Push & Formalization",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h5"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "The founders of MAPS recognized the need for a broader support network for Muslim employees across the Federal government. In 2020, they initiated efforts to establish Employee Resource Groups (ERGs) at the Department of Transportation and the Small Business Administration. By collaborating with leaders from existing Muslim staff associations, they laid the groundwork for MAPS, aiming to create a unified organization that would support Muslim public servants nationwide.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Community Across all Branches and Levels of Government",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h5"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "The expansion to individual membership catalyzed MAPS' growth, addressing the need for a formal network supporting Muslim American public servants. Previously, informal gatherings within public institutions were limited and lacked accessibility. Recognizing this gap, MAPS founders worked to establish a national organization, culminating in its incorporation in January 2021. With its official launch in April 2021, MAPS envisions empowering Muslim public servants to contribute to a more equitable society.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        }
+      ],
+      "direction": null,
+      "format": "",
+      "indent": 0,
+      "type": "root",
+      "version": 1
+    }
+  },
+  "images": [
+    {
+      "src": "../images/32.webp",
+      "filename": "32.webp",
+      "id": 1665
+    },
+    {
+      "src": "../images/17.webp",
+      "filename": "17.webp",
+      "id": 1666
+    },
+    {
+      "src": "../images/103.webp",
+      "filename": "103.webp",
+      "id": 1667
+    },
+    {
+      "src": "../images/69.webp",
+      "filename": "69.webp",
+      "id": 1668
+    },
+    {
+      "src": "../images/95.webp",
+      "filename": "95.webp",
+      "id": 1669
+    },
+    {
+      "src": "../images/4_2.webp",
+      "filename": "4_2.webp",
+      "id": 1670
+    },
+    {
+      "src": "../images/14.webp",
+      "filename": "14.webp",
+      "id": 1671
+    }
+  ],
+  "blocks": [
+    {
+      "blockType": "timeline",
+      "header": {
+        "enableHeader": true,
+        "heading": "Timeline",
+        "anchorId": "timeline"
+      },
+      "items": [
+        {
+          "date": "2019",
+          "body": {
+            "root": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "Muslim Federal employees at the US Department of Transportation (DOT) apply to create Muslim Americans in Public Service, DOT's first Employee Resource Group (ERG) to support Muslim staff",
+                      "type": "text",
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "paragraph",
+                  "version": 1,
+                  "textFormat": 0,
+                  "textStyle": ""
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "root",
+              "version": 1
+            }
+          }
+        },
+        {
+          "date": "2020",
+          "body": {
+            "root": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "Leaders of the first and only four Muslim Federal staff associations meet to plan the creation of national non-profit to support and connect Muslim Federal ERGs, expanding scope to cover individuals at all levels and branches of public service over following nine months.",
+                      "type": "text",
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "paragraph",
+                  "version": 1,
+                  "textFormat": 0,
+                  "textStyle": ""
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "root",
+              "version": 1
+            }
+          }
+        },
+        {
+          "date": "2021",
+          "body": {
+            "root": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "Muslim Americans in Public Service (MAPS) officially launches as first national organization to support and represent all Muslims in American government.",
+                      "type": "text",
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "paragraph",
+                  "version": 1,
+                  "textFormat": 0,
+                  "textStyle": ""
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "root",
+              "version": 1
+            }
+          }
+        },
+        {
+          "date": "2022",
+          "body": {
+            "root": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "MAPS National holds first National Iftar in DC and first semi-annual in-person DC Networking Event; Launches first State Committee; MAPS-New York.",
+                      "type": "text",
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "paragraph",
+                  "version": 1,
+                  "textFormat": 0,
+                  "textStyle": ""
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "root",
+              "version": 1
+            }
+          }
+        },
+        {
+          "date": "2023",
+          "body": {
+            "root": {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "detail": 0,
+                      "format": 0,
+                      "mode": "normal",
+                      "style": "",
+                      "text": "First State Iftar, MAPS-Massachusetts organizes their inaugural City Hall Iftar",
+                      "type": "text",
+                      "version": 1
+                    }
+                  ],
+                  "direction": null,
+                  "format": "",
+                  "indent": 0,
+                  "type": "paragraph",
+                  "version": 1,
+                  "textFormat": 0,
+                  "textStyle": ""
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "root",
+              "version": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+/*
+ * Design tokens — owned by this project.
+ * Extracted from the Webflow/Relume (Client-First) export :root custom properties
+ * (migration export: css/mapsnational.webflow.css). These are the source of truth;
+ * the Webflow CSS itself is NOT imported anywhere in the app.
+ */
+
+:root {
+  /* === Brand: primary (navy) === */
+  --brand-primary-lightest: #e6e8f0;
+  --brand-primary-lighter: #ced2e1;
+  --brand-primary-light: #556198;
+  --brand-primary-base: #0d1e6c;
+  --brand-primary-dark: #0a1856;
+  --brand-primary-darker: #050c2b;
+  --brand-primary-darkest: #030920;
+
+  /* === Brand: secondary (maroon) === */
+  --brand-secondary-lightest: #f3e6e5;
+  --brand-secondary-lighter: #e7cecc;
+  --brand-secondary-light: #ad534e;
+  --brand-secondary-base: #8b0a03;
+  --brand-secondary-dark: #6f0802;
+  --brand-secondary-darker: #370401;
+  --brand-secondary-darkest: #290300;
+
+  /* === Neutral scale === */
+  --neutral-white: #ffffff;
+  --neutral-lightest: #f2f2f2;
+  --neutral-lighter: #d9d8d8;
+  --neutral-light: #b4b2b2;
+  --neutral-base: #83807f;
+  --neutral-dark: #514d4c;
+  --neutral-darker: #1f1a19;
+  --neutral-darkest: #070100;
+  --neutral-black: #000000;
+
+  /* === System === */
+  --system-success: #027a48;
+  --system-success-light: #ecfdf3;
+  --system-error: #b42318;
+  --system-error-light: #fef3f2;
+  --system-warning: #b45309;
+  --system-warning-light: #fffbeb;
+
+  /* === Radius scale ===
+   * Synthesized from values actually used in the export (the Relume radius
+   * variables were unresolved/broken in the export). */
+  --rad-xs: 0.25rem;
+  --rad-sm: 0.5rem;
+  --rad-md: 0.625rem;
+  --rad-lg: 0.75rem;
+  --rad-xl: 1rem;
+  --rad-pill: 100px;
+
+  /* === Spacing scale (Relume --_responsive---gap-*) === */
+  --space-xxs: 0.5rem;
+  --space-xs: 1rem;
+  --space-s: 1.5rem;
+  --space-m: 2rem;
+  --space-l: 3rem;
+  --space-xl: 4rem;
+  --space-xxl: 5rem;
+  --space-huge: 6rem;
+  --space-xhuge: 7.5rem;
+
+  /* === Typography families ===
+   * --font-body-family / --font-heading-family come from next/font in
+   * layout.tsx. Role-named, so swapping typefaces touches only that file;
+   * fallbacks are generic (never name the brand's own fonts here). */
+  --font-body: var(--font-body-family), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-heading-family), ui-serif, Georgia, serif;
+}

@@ -1,0 +1,473 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './tokens.css';
+
+@config '../../../tailwind.config.mjs';
+
+@custom-variant dark (&:is([data-theme='dark'] *));
+@custom-variant sm (@media (width >= theme(--breakpoint-sm)));
+@custom-variant md (@media (width >= theme(--breakpoint-md)));
+@custom-variant lg (@media (width >= theme(--breakpoint-lg)));
+@custom-variant xl (@media (width >= theme(--breakpoint-xl)));
+@custom-variant 2xl (@media (width >= theme(--breakpoint-2xl)));
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: unset;
+    font-size: unset;
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  /* === Canonical type scale ===
+     One ramp for every heading-like element. Hardcoded JSX headings use these
+     .type-* classes; RichText/prose headings get the SAME sizes from the
+     typography config in tailwind.config.mjs — change both together. Size alone
+     carries the hierarchy and every heading is weight 600, so weight never
+     inverts it: a section .type-h2 can never out-weigh the hero display. Apply
+     a .type-* for font/size/weight/leading; keep colour and margin as utilities
+     (text-content, mb-8, …). Never hand-tune a one-off heading size in a block. */
+  .type-display {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .type-h2 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.875rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .type-h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  .type-h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+  .type-h5 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.35;
+  }
+  .type-lead {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  .type-eyebrow {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+  .type-quote {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+  .type-small {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  @media (width >= 48rem) {
+    .type-display {
+      font-size: 3.5rem;
+    }
+    .type-h2 {
+      font-size: 2.25rem;
+    }
+    .type-h3 {
+      font-size: 1.875rem;
+    }
+    .type-lead {
+      font-size: 1.25rem;
+    }
+    .type-quote {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@plugin "@tailwindcss/typography";
+
+@source inline("lg:col-span-4");
+@source inline("lg:col-span-6");
+@source inline("lg:col-span-8");
+@source inline("lg:col-span-12");
+@source inline("border-border");
+@source inline("bg-card");
+@source inline("border-error");
+@source inline("bg-error/30");
+@source inline("border-success");
+@source inline("bg-success/30");
+@source inline("border-warning");
+@source inline("bg-warning/30");
+
+@theme {
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 86rem;
+  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
+}
+
+@layer utilities {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @variant sm {
+    .container {
+      max-width: var(--breakpoint-sm);
+    }
+  }
+
+  @variant md {
+    .container {
+      max-width: var(--breakpoint-md);
+      padding-inline: 2rem;
+    }
+  }
+
+  @variant lg {
+    .container {
+      max-width: var(--breakpoint-lg);
+    }
+  }
+
+  @variant xl {
+    .container {
+      max-width: var(--breakpoint-xl);
+    }
+  }
+
+  @variant 2xl {
+    .container {
+      max-width: var(--breakpoint-2xl);
+    }
+  }
+
+  /* Sticky page TOC (PageTOC): reserve a left rail only when the TOC activates
+     itself (3+ section headings) and only at xl+, where there's room. Below xl
+     the rail is hidden and content stays full-width. */
+  @variant xl {
+    [data-toc-content][data-toc-active='true'] {
+      padding-left: 15rem;
+    }
+  }
+}
+
+:root {
+  --background: var(--neutral-white);
+  --foreground: var(--neutral-darker);
+  --card: var(--neutral-white);
+  --card-foreground: var(--neutral-darker);
+  --popover: var(--neutral-white);
+  --popover-foreground: var(--neutral-darker);
+  --primary: var(--brand-primary-base);
+  --primary-foreground: var(--neutral-white);
+  --secondary: var(--neutral-lightest);
+  --secondary-foreground: var(--neutral-darker);
+  --muted: var(--neutral-lightest);
+  --muted-foreground: var(--neutral-base);
+  --accent: var(--neutral-lightest);
+  --accent-foreground: var(--neutral-darker);
+  --destructive: color-mix(in srgb, var(--system-error) 80%, black);
+  --destructive-foreground: var(--neutral-white);
+  --border: var(--neutral-lighter);
+  --input: var(--neutral-lighter);
+  --ring: var(--brand-primary-light);
+  --chart-1: var(--brand-primary-base);
+  --chart-2: var(--brand-secondary-base);
+  --chart-3: var(--neutral-base);
+  --chart-4: var(--brand-primary-light);
+  --chart-5: var(--brand-secondary-light);
+  --radius: var(--rad-md);
+  --sidebar: var(--neutral-white);
+  --sidebar-foreground: var(--neutral-darker);
+  --sidebar-primary: var(--brand-primary-base);
+  --sidebar-primary-foreground: var(--neutral-white);
+  --sidebar-accent: var(--neutral-lightest);
+  --sidebar-accent-foreground: var(--neutral-darker);
+  --sidebar-border: var(--neutral-lighter);
+  --sidebar-ring: var(--brand-primary-light);
+  --success: var(--system-success);
+  --warning: var(--system-warning);
+  --error: var(--system-error);
+
+  /* === Header / hero overlay geometry (single source of truth) ===
+     The header overlays the hero, so full-bleed heros (HighImpact, PostHero)
+     slide up under it by exactly header height + the page's top padding.
+     Change these here only — the header is pinned to --header-height and the
+     heros derive their negative margin from both. Editing one hero's offset by
+     hand is what caused the recurring top-gap. */
+  --header-height: 6.5rem;
+  --page-top-pad: 4rem;
+
+  /* === Semantic tiers (Relume background/text/border/link) === */
+  --surface-secondary: var(--neutral-lightest);
+  --surface-tertiary: var(--neutral-light);
+  --surface-alternate: var(--neutral-black);
+  --surface-success: var(--system-success-light);
+  --surface-error: var(--system-error-light);
+  --content-secondary: var(--neutral-dark);
+  --content-alternate: var(--neutral-white);
+  --content-success: color-mix(in srgb, var(--system-success) 75%, black);
+  --content-error: color-mix(in srgb, var(--system-error) 80%, black);
+  --border-strong: var(--neutral-darker);
+  --border-alternate: var(--neutral-white);
+  --link: var(--brand-primary-base);
+  --link-secondary: var(--neutral-dark);
+  --link-alternate: var(--neutral-white);
+}
+
+[data-theme='dark'] {
+  --background: var(--neutral-darkest);
+  --foreground: var(--neutral-lightest);
+  --card: color-mix(in srgb, var(--neutral-darker) 50%, var(--neutral-dark));
+  --card-foreground: var(--neutral-lightest);
+  --popover: var(--neutral-darker);
+  --popover-foreground: var(--neutral-lightest);
+  --primary: var(--brand-primary-lighter);
+  --primary-foreground: var(--brand-primary-darkest);
+  --secondary: var(--neutral-dark);
+  --secondary-foreground: var(--neutral-white);
+  --muted: var(--neutral-darker);
+  --muted-foreground: var(--neutral-light);
+  --accent: var(--neutral-darker);
+  --accent-foreground: var(--neutral-lightest);
+  --destructive: color-mix(in srgb, var(--system-error) 72%, black);
+  --destructive-foreground: var(--neutral-white);
+  --border: var(--neutral-dark);
+  --input: var(--neutral-base);
+  --ring: var(--brand-primary-lighter);
+  --chart-1: var(--brand-primary-light);
+  --chart-2: var(--brand-secondary-light);
+  --chart-3: var(--neutral-light);
+  --chart-4: var(--brand-primary-lighter);
+  --chart-5: var(--brand-secondary-lighter);
+  --sidebar: var(--neutral-darkest);
+  --sidebar-foreground: var(--neutral-lightest);
+  --sidebar-primary: var(--brand-primary-light);
+  --sidebar-primary-foreground: var(--brand-primary-darkest);
+  --sidebar-accent: var(--neutral-darker);
+  --sidebar-accent-foreground: var(--neutral-lightest);
+  --sidebar-border: var(--neutral-dark);
+  --sidebar-ring: var(--brand-primary-light);
+  --success: var(--system-success);
+  --warning: var(--system-warning);
+  --error: var(--system-error);
+
+  /* === Semantic tiers — dark reconciliation ===
+   * "alternate" inverts (a light section on a dark site); neutral tiers shift
+   * up the scale; success/error surfaces are tinted toward the dark background
+   * and their text is lightened for contrast. */
+  --surface-secondary: var(--neutral-darker);
+  --surface-tertiary: var(--neutral-dark);
+  --surface-alternate: var(--neutral-lightest);
+  --surface-success: color-mix(in srgb, var(--system-success) 16%, var(--neutral-darkest));
+  --surface-error: color-mix(in srgb, var(--system-error) 16%, var(--neutral-darkest));
+  --content-secondary: var(--neutral-light);
+  --content-alternate: var(--neutral-darkest);
+  --content-success: color-mix(in srgb, var(--system-success) 50%, white);
+  --content-error: color-mix(in srgb, var(--system-error) 50%, white);
+  --border-strong: var(--neutral-light);
+  --border-alternate: var(--neutral-darkest);
+  --link: color-mix(in srgb, var(--brand-primary-light) 45%, white);
+  --link-secondary: var(--neutral-light);
+  --link-alternate: var(--neutral-darkest);
+  /* dark links/buttons tuned for AAA contrast on dark surfaces */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-xs: var(--rad-xs);
+  --radius-sm: var(--rad-sm);
+  --radius-md: var(--rad-md);
+  --radius-lg: var(--rad-lg);
+  --radius-xl: var(--rad-xl);
+  --radius-pill: var(--rad-pill);
+  --spacing-xxs: var(--space-xxs);
+  --spacing-xs: var(--space-xs);
+  --spacing-s: var(--space-s);
+  --spacing-m: var(--space-m);
+  --spacing-l: var(--space-l);
+  --spacing-xl: var(--space-xl);
+  --spacing-xxl: var(--space-xxl);
+  --spacing-huge: var(--space-huge);
+  --spacing-xhuge: var(--space-xhuge);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-tertiary: var(--surface-tertiary);
+  --color-surface-alternate: var(--surface-alternate);
+  --color-surface-success: var(--surface-success);
+  --color-surface-error: var(--surface-error);
+  --color-content-secondary: var(--content-secondary);
+  --color-content-alternate: var(--content-alternate);
+  --color-content-success: var(--content-success);
+  --color-content-error: var(--content-error);
+  --color-border-strong: var(--border-strong);
+  --color-border-alternate: var(--border-alternate);
+  --color-link: var(--link);
+  --color-link-secondary: var(--link-secondary);
+  --color-link-alternate: var(--link-alternate);
+  /* Brand accent colors — apply intentionally (not the neutral shadcn --secondary) */
+  --color-brand-primary: var(--brand-primary-base);
+  --color-brand-secondary: var(--brand-secondary-base);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    font-family: var(--font-body);
+  }
+}
+
+html {
+  opacity: 0;
+}
+
+html[data-theme='dark'],
+html[data-theme='light'] {
+  opacity: initial;
+}
+
+/*
+ * Accessible focus indicator (WCAG 2.4.7 / 1.4.11).
+ * Unlayered so it overrides shadcn's low-opacity focus utilities; uses the
+ * brand ring colour at full opacity for a clearly visible ring in both themes.
+ */
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role='button'],
+  [tabindex]:not([tabindex='-1'])
+):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/*
+ * Logo strip marquee. The track holds the logos twice; translating it -50%
+ * loops seamlessly. Pure CSS (no client JS); paused on hover and disabled for
+ * users who prefer reduced motion. See src/blocks/LogoStrip.
+ */
+@keyframes logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee-track {
+  animation: logo-marquee 40s linear infinite;
+}
+
+.logo-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track {
+    animation: none;
+  }
+}
+
+/* In-page anchor jumps (e.g. the member-portal hero tiles) scroll smoothly,
+   unless the visitor prefers reduced motion. Targets carry scroll-mt-* so the
+   fixed header doesn't cover the heading. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* G9: Outseta's nocode module injects `a[href^="/members" i]{display:none!important}`
+   to hide member links from anonymous visitors. The /members/* routes are already
+   gated server-side (src/proxy.ts redirects anyone without a valid token), so
+   that client hiding only leaves an empty "Members" nav column. Show the nav links
+   to everyone — a logged-out click just hits the gate and redirects to login. The
+   #primary-menu id makes this rule (1,1,1) outweigh Outseta's (0,1,1) so it wins
+   the !important tie regardless of injection order; scoped to the menu so it never
+   un-hides member links elsewhere. */
+#primary-menu a[href^='/members' i] {
+  display: revert !important;
+}
+
+/* G10: Post/page RichText body can contain inline /members links (e.g. a Member
+   Portal link mid-sentence). Same story as G9: the route is gated server-side, so
+   Outseta's global hide rule only breaks the sentence for anonymous readers. Show
+   the link to everyone — a logged-out click hits the gate and redirects to login.
+   Scoped to .payload-richtext; specificity (0,2,1) beats Outseta's (0,1,1) for the
+   !important tie. (#250) */
+.payload-richtext a[href^='/members' i] {
+  display: revert !important;
+}

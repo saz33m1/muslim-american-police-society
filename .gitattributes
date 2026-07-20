@@ -1,0 +1,5 @@
+src/migrations/*.json linguist-generated=true
+
+# Shell scripts must stay LF or a Windows checkout gives them CRLF and bash
+# fails with "bad interpreter". refresh-staging.sh depends on this.
+*.sh text eol=lf

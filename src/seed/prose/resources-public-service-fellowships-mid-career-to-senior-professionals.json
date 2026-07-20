@@ -1,0 +1,92 @@
+{
+  "slug": "resources/public-service-fellowships-mid-career-to-senior-professionals",
+  "title": "Public Service Fellowships — Mid-Career to Senior Professionals",
+  "richText": {
+    "root": {
+      "children": [
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Public Service Fellowships",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h2"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "Mid-Career to Senior Professionals",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "heading",
+          "version": 1,
+          "tag": "h4"
+        },
+        {
+          "children": [
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "There are many opportunities to develop your career in public service by way of fellowships. These worthwhile programs serve as entry points into government for professionals of almost all career tracks and levels of experience. As a starting point, MAPS has compiled and arranged this list of well-known fellowships for the benefit of our members and the general public. Please visit their respective sites below to learn more about what they offer, what they’re looking for, and important application deadlines.",
+              "type": "text",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "type": "linebreak",
+              "version": 1
+            },
+            {
+              "detail": 0,
+              "format": 0,
+              "mode": "normal",
+              "style": "",
+              "text": "The following are a selection of fellowships for mid career or senior professionals to enrich their careers in public service, or enter it for the first time from the private or non-profit sectors. These selective fellowships invite you to apply your experience, talents, research, or expertise in related areas, toward specific Federal agencies or groups of Federal or Congressional offices.",
+              "type": "text",
+              "version": 1
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "paragraph",
+          "version": 1,
+          "textFormat": 0,
+          "textStyle": ""
+        }
+      ],
+      "direction": null,
+      "format": "",
+      "indent": 0,
+      "type": "root",
+      "version": 1
+    }
+  },
+  "images": [],
+  "blocks": []
+}

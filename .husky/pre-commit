@@ -1,0 +1,3 @@
+# Fast checks only. The heavy e2e/a11y suite runs on pre-push.
+npx lint-staged
+npm run typecheck

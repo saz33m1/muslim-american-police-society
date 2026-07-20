@@ -1,0 +1,33 @@
+build
+dist / media
+node_modules
+.DS_Store
+.env
+.next
+next-env.d.ts
+.vercel
+*.tsbuildinfo
+
+/migration/
+
+# Payload default media upload directory
+public/media/
+
+# Bulk-import originals for Latest Updates: 79 heroes + ~584 gallery images
+# (~1GB+) — too large to track in git. Re-hostable by re-running the import
+# (`npm run import -- updates`). Pending a storage backend (see #74 storage).
+public/import/updates/
+
+public/robots.txt
+public/sitemap*.xml
+
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# offsite prod backups (backup:prod default out dir)
+backups/

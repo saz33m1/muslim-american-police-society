@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    # Config activates from the default branch (master); PRs open against staging
+    # so upgrades go through the ADR 0002 staging-first flow.
+    target-branch: staging
+    schedule:
+      interval: weekly
+    groups:
+      # One grouped PR keeps the payload + @payloadcms/* lockstep set together.
+      deps:
+        patterns: ['*']
+        update-types: ['minor', 'patch']
+    ignore:
+      # Majors (payload 4.x, next 17, react 20) are done by hand.
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: staging
+    schedule:
+      interval: weekly

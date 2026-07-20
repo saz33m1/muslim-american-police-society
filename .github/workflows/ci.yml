@@ -1,0 +1,155 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master, staging]
+
+jobs:
+  branch-flow:
+    name: branch flow guard
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      # ADR 0002: every change lands on `staging` first; `master` only ever
+      # receives `staging` (the promotion merge that deploys prod). Block any PR
+      # that targets master from a branch other than staging so a feature branch
+      # can never merge straight to prod. Skipped (job succeeds) for every
+      # allowed PR, so it is safe to require as a status check.
+      - name: Enforce PRs target staging, not master
+        if: github.base_ref == 'master' && github.head_ref != 'staging'
+        run: |
+          echo "::error::PRs must target 'staging', not 'master'. Only 'staging' -> 'master' promotion PRs may target master (ADR 0002). Re-target this PR's base branch to 'staging'."
+          exit 1
+
+  quality:
+    name: lint · build · int
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: payload_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/payload_test
+      PAYLOAD_SECRET: ci-test-secret
+      NEXT_PUBLIC_SERVER_URL: http://localhost:3000
+      CRON_SECRET: ci-cron-secret
+      PREVIEW_SECRET: ci-preview-secret
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      # Seeds schema + content. The Postgres adapter pushes the schema on boot
+      # outside production (no migrations exist), so the build's
+      # generateStaticParams can query the pages table.
+      - run: npm run seed:pages
+      - run: npm run build
+      - run: npm run test:int
+
+  migrations:
+    name: migration guard
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: payload_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/payload_test
+      PAYLOAD_SECRET: ci-test-secret
+      NEXT_PUBLIC_SERVER_URL: http://localhost:3000
+      CRON_SECRET: ci-cron-secret
+      PREVIEW_SECRET: ci-preview-secret
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      # Prod runs push:false, so it only sees committed migrations. Apply them to
+      # a clean DB (the real preDeploy path), which also fails a broken migration.
+      - run: npm run payload -- migrate
+      # migrate:create diffs the live config against the latest committed migration
+      # snapshot. --skip-empty exits 0 writing nothing when there's no drift; on
+      # un-migrated schema changes it writes a migration file (+ rewrites index.ts),
+      # which git flags below. This is the drift the push:false prod deploy can't see.
+      # Flag must be kebab-case: payload's arg normalizer lowercases --skipEmpty to
+      # a non-matching key, silently no-opping it (then it hangs on the prompt).
+      - name: Fail if schema changed without a committed migration
+        run: |
+          npm run payload -- migrate:create ci_guard --skip-empty
+          if [ -n "$(git status --porcelain src/migrations)" ]; then
+            echo "::error::Schema changed but no migration was committed. Run: npm run payload -- migrate:create <name>"
+            git status --porcelain src/migrations
+            exit 1
+          fi
+
+  e2e:
+    name: e2e (playwright)
+    needs: quality
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: payload_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/payload_test
+      PAYLOAD_SECRET: ci-test-secret
+      NEXT_PUBLIC_SERVER_URL: http://localhost:3000
+      CRON_SECRET: ci-cron-secret
+      PREVIEW_SECRET: ci-preview-secret
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # Deterministic content for the specs; also pushes the schema.
+      - run: npm run seed:pages
+      # navGroups start empty on a fresh-pushed DB; specs need the default nav.
+      - run: npm run seed:header
+      # CI=true makes playwright.config use `npm run dev:ci` (no Windows predev),
+      # enable retries, and forbid test.only.
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

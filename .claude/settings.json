@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__plugin_railway_railway__accept-deploy",
+      "mcp__plugin_railway_railway__create-deployment",
+      "mcp__plugin_railway_railway__create-project",
+      "mcp__plugin_railway_railway__delete-feature-flag",
+      "mcp__plugin_railway_railway__deploy-artifact",
+      "mcp__plugin_railway_railway__railway-agent",
+      "mcp__plugin_railway_railway__redeploy",
+      "mcp__plugin_railway_railway__set-feature-flag"
+    ]
+  }
+}

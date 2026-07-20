@@ -1,0 +1,8 @@
+# Fast gate before pushing: lint + typecheck + integration tests. All quick,
+# deterministic, and need no browser or running dev server. The heavy Playwright
+# e2e + a11y suite is intentionally NOT here — CI runs it on every PR
+# (.github/workflows/ci.yml), so duplicating it locally only adds minutes and
+# flakiness. Run it on demand with `npm run test:e2e` when you touch those flows.
+npm run lint
+npm run typecheck
+npm run test:int
