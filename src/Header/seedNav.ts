@@ -23,6 +23,15 @@ export const defaultNavGroups: NonNullable<Header['navGroups']> = [
     href: '/programs',
     items: [],
   },
+  {
+    label: 'Resources',
+    href: '/resources',
+    items: [
+      { label: 'FAQ', href: '/resources/faq' },
+      { label: 'Media', href: '/resources/media' },
+      { label: 'Publications', href: '/resources/publications' },
+    ],
+  },
 ]
 
 // Bottom-row flat links. Kept as an (empty) array so admins can still add links.

@@ -16,10 +16,11 @@ export const COPYRIGHT_NAME = 'Muslim American Police Society'
 // Icon components stay local to Footer/Component.tsx (keyed by `platform`) so
 // this file never imports lucide-react. Supported keys: Facebook, Instagram, X,
 // LinkedIn, YouTube — anything else needs a lucide import added to that map.
-// ponytail: empty until the org's real accounts exist. The previous entries
-// pointed at a different organization, so they were removed rather than left
-// to ship as wrong links. Footer renders an empty "Follow us" list meanwhile.
-export const SOCIAL: { platform: string; href: string }[] = []
+export const SOCIAL: { platform: string; href: string }[] = [
+  { platform: 'Facebook', href: 'https://www.facebook.com/MuslimAmericanPoliceSociety/' },
+  { platform: 'Instagram', href: 'https://www.instagram.com/muslim_american_police_society/' },
+  { platform: 'X', href: 'https://x.com/MAPSPolice' },
+]
 
 // Every href must resolve to a seeded page or an app route, or the footer ships
 // dead links. Add entries here as the corresponding pages get built.
@@ -46,14 +47,16 @@ export const EMAIL_FROM_ADDRESS = 'no-reply@muslimamericanpolicesociety.org'
 
 // Files live at public/logo-{primary,secondary}-{light,dark}.svg. dims are the
 // intrinsic aspect ratio scaled to a 34px tall mark (src/components/Logo/Logo.tsx
-// builds the <img> src from the variant/theme, not from this object).
-// ponytail: dims still match the inherited placeholder SVGs. Update both when
-// the real logo files land or the mark renders distorted.
+// builds the <img> src from the variant/theme, not from this object). These match
+// the real MAPS marks: primary = full lockup (viewBox 1972×298), secondary = the
+// emblem only (243×284). logo-primary-color.svg (the navy/gold full lockup) is a
+// spare — not wired, since its aspect ratio differs from the mono pair and would
+// resize the mark on theme toggle.
 export const LOGO = {
   alt: 'Muslim American Police Society',
   dims: {
-    primary: { width: 156, height: 34 },
-    secondary: { width: 122, height: 34 },
+    primary: { width: 225, height: 34 },
+    secondary: { width: 29, height: 34 },
   },
 }
 

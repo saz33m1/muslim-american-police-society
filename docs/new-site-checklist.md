@@ -53,10 +53,11 @@ text — no further edit needed unless the new org drops the Team collection
 
 ## 4. Swap design tokens
 
-`src/app/(frontend)/tokens.css` — the navy/maroon hex ramp
-(`--brand-primary-base`, `--brand-secondary-base`) and font stack
-(`--font-body`/`--font-heading`). Re-map the shadcn slots in `globals.css`
-only if hue *roles* change (e.g. which token is "primary" vs "secondary").
+`src/app/(frontend)/tokens.css` — the navy/gold hex ramp
+(`--brand-primary-base` `#162245`, `--brand-secondary-base` `#dcab35`) and the
+fonts (Fraunces/Lato, set in `layout.tsx`; the CSS vars stay role-named).
+Re-map the shadcn slots in `globals.css` only if hue *roles* change (e.g. which
+token is "primary" vs "secondary").
 Keep text pairs WCAG AAA — `/design-system` verifies both themes.
 
 ## 5. Replace content (fork-time, not variables)

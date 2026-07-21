@@ -6,33 +6,36 @@
  */
 
 :root {
-  /* === Brand: primary (navy) === */
-  --brand-primary-lightest: #e6e8f0;
-  --brand-primary-lighter: #ced2e1;
-  --brand-primary-light: #556198;
-  --brand-primary-base: #0d1e6c;
-  --brand-primary-dark: #0a1856;
-  --brand-primary-darker: #050c2b;
-  --brand-primary-darkest: #030920;
+  /* === Brand: primary (navy) ===
+   * Ramp derived from the MAPS brand navy --brand-primary-base (#162245):
+   * lighter steps mix toward white, darker steps toward black. */
+  --brand-primary-lightest: #e8e9ec;
+  --brand-primary-lighter: #d0d3da;
+  --brand-primary-light: #7f8599;
+  --brand-primary-base: #162245;
+  --brand-primary-dark: #121b37;
+  --brand-primary-darker: #0a0f1f;
+  --brand-primary-darkest: #070a15;
 
-  /* === Brand: secondary (maroon) === */
-  --brand-secondary-lightest: #f3e6e5;
-  --brand-secondary-lighter: #e7cecc;
-  --brand-secondary-light: #ad534e;
-  --brand-secondary-base: #8b0a03;
-  --brand-secondary-dark: #6f0802;
-  --brand-secondary-darker: #370401;
-  --brand-secondary-darkest: #290300;
+  /* === Brand: secondary (gold) ===
+   * Ramp derived from the MAPS brand gold --brand-secondary-base (#dcab35). */
+  --brand-secondary-lightest: #fbf5e7;
+  --brand-secondary-lighter: #f5e8c6;
+  --brand-secondary-light: #e8c87c;
+  --brand-secondary-base: #dcab35;
+  --brand-secondary-dark: #b0892a;
+  --brand-secondary-darker: #6e561b;
+  --brand-secondary-darkest: #4d3c13;
 
-  /* === Neutral scale === */
+  /* === Neutral scale === (centered on brand neutral #808081) */
   --neutral-white: #ffffff;
-  --neutral-lightest: #f2f2f2;
-  --neutral-lighter: #d9d8d8;
-  --neutral-light: #b4b2b2;
-  --neutral-base: #83807f;
-  --neutral-dark: #514d4c;
-  --neutral-darker: #1f1a19;
-  --neutral-darkest: #070100;
+  --neutral-lightest: #f2f2f3;
+  --neutral-lighter: #dadadb;
+  --neutral-light: #b3b3b4;
+  --neutral-base: #808081;
+  --neutral-dark: #565657;
+  --neutral-darker: #2e2e2f;
+  --neutral-darkest: #161617;
   --neutral-black: #000000;
 
   /* === System === */

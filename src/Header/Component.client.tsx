@@ -1,51 +1,33 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 
 import { Logo } from '@/components/Logo/Logo'
 import { NavMenu } from './NavMenu'
 import type { Header as HeaderType } from '@/payload-types'
 
+/**
+ * Solid navy header bar (full-bleed background, container-width content). It is
+ * pinned to the dark theme on every page — white logo + white nav — so it reads
+ * the same across light and dark pages, and full-bleed heros (which pull up under
+ * it and re-pad their own content below --header-height) sit behind the bar
+ * without anything being clipped. The old per-page theme-follow logic is gone:
+ * the header no longer varies, so it ignores HeaderTheme (heros still set it, but
+ * nothing here reads it).
+ */
 export const HeaderClient: React.FC<{
   navGroups: NonNullable<HeaderType['navGroups']>
   flatLinks: NonNullable<HeaderType['flatLinks']>
 }> = ({ navGroups, flatLinks }) => {
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  /* Seed from the server-resolved per-page theme (HeaderThemeProvider) so the
-     first paint matches SSR — no flash of the wrong header theme. */
-  const [theme, setTheme] = useState<string | null>(headerTheme ?? null)
-  const pathname = usePathname()
-  const isFirstRender = useRef(true)
-
-  useEffect(() => {
-    // Don't clear the server-seeded theme on initial mount; only reset when the
-    // user navigates to a new route (the destination page re-asserts its own).
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
-    setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
-
-  useEffect(() => {
-    // Follow the header theme a page sets; when none is set (null), fall back to
-    // no override so the header inherits the global theme instead of sticking to
-    // the previous page's value. Mirrors an external context (HeaderTheme).
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (headerTheme !== theme) setTheme(headerTheme ?? null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headerTheme])
-
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="h-[var(--header-height)] flex items-center justify-between">
-        <Link href="/">
-          <Logo className="h-11" variant="primary" loading="eager" priority="high" />
-        </Link>
-        <NavMenu navGroups={navGroups} flatLinks={flatLinks} />
+    <header className="relative z-20 bg-brand-primary" data-theme="dark">
+      <div className="container">
+        <div className="h-[var(--header-height)] flex items-center justify-between">
+          <Link href="/">
+            <Logo className="h-8" variant="primary" loading="eager" priority="high" />
+          </Link>
+          <NavMenu navGroups={navGroups} flatLinks={flatLinks} />
+        </div>
       </div>
     </header>
   )

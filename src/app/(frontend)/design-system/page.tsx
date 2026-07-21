@@ -84,7 +84,7 @@ export default function StyleGuidePage() {
         </div>
       </Section>
 
-      <Section title="Brand — secondary (maroon)">
+      <Section title="Brand — secondary (gold)">
         <div className="grid grid-cols-2 gap-s sm:grid-cols-4 lg:grid-cols-7">
           {brandSecondary.map((step) => (
             <Swatch
@@ -118,11 +118,11 @@ export default function StyleGuidePage() {
             Brand primary
           </span>
           <span className="rounded-md bg-brand-secondary px-4 py-2 text-sm font-medium text-white">
-            Brand secondary (maroon)
+            Brand secondary (gold)
           </span>
           <span className="text-content-secondary text-sm">
-            Maroon is a deliberate accent (<code>bg-brand-secondary</code>), not the neutral
-            secondary action.
+            Gold is a deliberate accent (<code>bg-brand-secondary</code>), not the neutral secondary
+            action.
           </span>
         </div>
       </Section>
@@ -140,63 +140,63 @@ export default function StyleGuidePage() {
 
       <Section title="Typography">
         <p className="max-w-prose text-sm text-content-secondary">
-          One scale. Headings are Lora (serif) at a uniform 600 weight, so hierarchy is carried by
-          size alone and a section heading can never out-weigh the hero display. Body, lead, and
-          labels are Montserrat. Hardcoded headings use the <code>.type-*</code> classes; RichText /
-          prose headings get the same sizes from the typography config. Sizes show mobile → desktop.
+          One scale. Headings are Fraunces (serif) at a uniform 600 weight, so hierarchy is carried
+          by size alone and a section heading can never out-weigh the hero display. Body, lead, and
+          labels are Lato. Hardcoded headings use the <code>.type-*</code> classes; RichText / prose
+          headings get the same sizes from the typography config. Sizes show mobile → desktop.
         </p>
         <div className="flex max-w-prose flex-col gap-4">
           <TypeSpec
             as="p"
             className="type-display"
             token=".type-display"
-            spec="Lora · 600 · 40 → 56px · hero headline (prose h1)"
+            spec="Fraunces · 600 · 40 → 56px · hero headline (prose h1)"
             sample="Empowering public servants"
           />
           <TypeSpec
             as="h2"
             className="type-h2"
             token=".type-h2"
-            spec="Lora · 600 · 30 → 36px · section heading"
+            spec="Fraunces · 600 · 30 → 36px · section heading"
             sample="What our community says"
           />
           <TypeSpec
             as="h3"
             className="type-h3"
             token=".type-h3"
-            spec="Lora · 600 · 24 → 30px · subsection"
+            spec="Fraunces · 600 · 24 → 30px · subsection"
             sample="Leadership and board"
           />
           <TypeSpec
             as="h4"
             className="type-h4"
             token=".type-h4"
-            spec="Lora · 600 · 20px · card title"
+            spec="Fraunces · 600 · 20px · card title"
             sample="Program graduate"
           />
           <TypeSpec
             as="h5"
             className="type-h5"
             token=".type-h5"
-            spec="Lora · 600 · 18px · compact card title"
+            spec="Fraunces · 600 · 18px · compact card title"
             sample="Recent photo gallery"
           />
           <TypeSpec
             as="p"
             className="type-lead"
             token=".type-lead"
-            spec="Montserrat · 400 · 18 → 20px · intro / standfirst"
+            spec="Lato · 400 · 18 → 20px · intro / standfirst"
             sample="A short lead paragraph that introduces the section below it."
           />
           <TypeSpec
             token="(base body)"
-            spec="Montserrat · 400 · 16px"
+            spec="Lato · 400 · 16px"
             sample="Body copy. The quick brown fox jumps over the lazy dog."
           />
           <TypeSpec
             className="type-quote"
             token=".type-quote"
-            spec="Lora · 500 · 20 → 24px · pull-quote"
+            spec="Fraunces · 500 · 20 → 24px · pull-quote"
             sample="The roadmap into public service I did not know existed."
           />
           <div className="flex flex-col gap-1 border-b border-border pb-4 last:border-b-0">
@@ -207,20 +207,20 @@ export default function StyleGuidePage() {
               </blockquote>
             </div>
             <span className="text-xs text-muted-foreground">
-              <code>blockquote</code> · Montserrat · 300 · italic · RichText citation / attribution
+              <code>blockquote</code> · Lato · 300 · italic · RichText citation / attribution
             </span>
           </div>
           <TypeSpec
             as="span"
             className="type-eyebrow text-primary"
             token=".type-eyebrow"
-            spec="Montserrat · 600 · 14px · uppercase · label / eyebrow"
+            spec="Lato · 600 · 14px · uppercase · label / eyebrow"
             sample="In their words"
           />
           <TypeSpec
             className="type-small text-content-secondary"
             token=".type-small"
-            spec="Montserrat · 400 · 14px · caption / meta"
+            spec="Lato · 400 · 14px · caption / meta"
             sample="Caption and metadata text."
           />
           <TypeSpec

@@ -182,6 +182,34 @@ const programsSlice: PageSlice = async (_payload) => [
   ),
 ]
 
+// Placeholder Resources hub + children — seeded so the header Resources
+// mega-menu (src/Header/seedNav.ts) doesn't ship dead links. Replace with the
+// org's real resource pages, or delete this slice and the nav group together.
+const resourcesSlice: PageSlice = async (_payload) => [
+  simplePage(
+    'resources',
+    'Resources',
+    SITE_NAME,
+    'Placeholder overview of resources available to members and the public.',
+    [
+      'Placeholder resources copy. Describe the material the organization publishes and links out to below.',
+    ],
+  ),
+  simplePage('resources/faq', 'FAQ', 'Resources', 'Placeholder frequently asked questions.', [
+    'Placeholder FAQ copy. Add common questions and answers here.',
+  ]),
+  simplePage('resources/media', 'Media', 'Resources', 'Placeholder media resources.', [
+    'Placeholder media copy. Add photos, videos, or press material here.',
+  ]),
+  simplePage(
+    'resources/publications',
+    'Publications',
+    'Resources',
+    'Placeholder publications listing.',
+    ['Placeholder publications copy. List reports, newsletters, or other documents here.'],
+  ),
+]
+
 const joinSlice: PageSlice = async (_payload) => [
   simplePage(
     'join',
@@ -369,6 +397,7 @@ const PAGE_SLICES: PageSlice[] = [
   homeSlice,
   aboutUsSlice,
   programsSlice,
+  resourcesSlice,
   joinSlice,
   donateSlice,
   contactSlice,

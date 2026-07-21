@@ -3,21 +3,24 @@ import type { Metadata } from 'next'
 import { cn } from '@/utilities/ui'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
-import { Montserrat, Lora } from 'next/font/google'
+import { Lato, Fraunces } from 'next/font/google'
 import React from 'react'
 
 // Brand fonts — the one place a fork picks its typefaces. next/font needs
 // statically-analyzable imports, so the font NAME can't come from env/config;
 // swap the two imports above and the `weight` lists below. The CSS vars are
 // role-named on purpose, so tokens.css never names a specific typeface.
-const bodyFont = Montserrat({
+// Lato ships 100/300/400/700/900 only (no 500/600) — body copy is 400, so the
+// gap doesn't bite; the browser rounds any stray 500/600 to 700.
+const bodyFont = Lato({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '700'],
   variable: '--font-body-family',
   display: 'swap',
 })
 
-const headingFont = Lora({
+// Fraunces is a variable serif; headings land at 600 (see the type scale).
+const headingFont = Fraunces({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-heading-family',

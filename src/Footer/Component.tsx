@@ -38,7 +38,7 @@ const SOCIAL_ICONS: Record<string, React.FC<{ className?: string }>> = {
 export function Footer() {
   return (
     <footer
-      className="mt-auto border-t border-border bg-[var(--brand-primary-darker)] text-[var(--neutral-lightest)]"
+      className="mt-auto border-t border-border bg-brand-primary text-[var(--neutral-lightest)]"
       data-theme="dark"
     >
       <div className="container py-12">
@@ -46,7 +46,7 @@ export function Footer() {
           {/* Brand + newsletter */}
           <div className="max-w-md">
             <Link className="inline-flex items-center" href="/">
-              <Logo variant="secondary" theme="dark" />
+              <Logo className="h-8" variant="primary" theme="dark" />
             </Link>
             <p className="mt-6 text-sm text-[var(--neutral-light)]">{FOOTER_TAGLINE}</p>
 

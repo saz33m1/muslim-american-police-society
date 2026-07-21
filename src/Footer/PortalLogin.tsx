@@ -12,7 +12,7 @@ import React from 'react'
 export function PortalLogin() {
   return (
     <a
-      className="mt-4 inline-block text-sm font-semibold text-[var(--neutral-lightest)] underline-offset-4 hover:underline"
+      className="mt-4 block w-fit text-sm font-semibold text-[var(--neutral-lightest)] underline-offset-4 hover:underline"
       data-o-anonymous="true"
       href="#"
       onClick={(e) => {

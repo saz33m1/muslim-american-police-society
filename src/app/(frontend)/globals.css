@@ -230,7 +230,7 @@
      Change these here only — the header is pinned to --header-height and the
      heros derive their negative margin from both. Editing one hero's offset by
      hand is what caused the recurring top-gap. */
-  --header-height: 6.5rem;
+  --header-height: 4.5rem;
   --page-top-pad: 4rem;
 
   /* === Semantic tiers (Relume background/text/border/link) === */
