@@ -128,9 +128,10 @@ step 2. Staging only: `STAGING_GATE_USER` / `STAGING_GATE_PASSWORD`
 - `scripts/refresh-local.mjs` / `refresh-lock.mjs`, `ensure-admin.ts`,
   `ensure-docker.ps1` — resolve targets from Railway env names / `.env`,
   no hardcoded org coupling.
-- Husky hooks, tests scaffolding, MinIO docker-compose (bucket name is
-  generic; `container_name`/volume `name` in `docker-compose.yml` do embed
-  `maps-website` — cosmetic, only matters if `docker ps` output bothers you).
+- Husky hooks, tests scaffolding, MinIO docker-compose (bucket name and
+  `container_name` are generic; the pinned volume `name: maps-website-media`
+  in `docker-compose.yml` still embeds the repo name — cosmetic, only matters
+  if it shows up in `docker volume ls`).
 - `scripts/register-backup-task.ps1` — machine-local by design (task name,
   checkout path, maintainer's backup folder); edit the four marked lines
   directly, not via env.
