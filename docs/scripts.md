@@ -43,6 +43,7 @@ Run directly with tsx (no npm script). Each skips work already done.
 | `npx tsx scripts/trim-logo-padding.ts` | `sharp.trim()` baked-in padding off partner logos so object-contain scales the real artwork consistently. | Idempotent. |
 | `node --import tsx/esm scripts/purge-junk-pages.ts` | Drop `E2E CRUD*` test pages and empty autosave-orphan drafts from the shared dev DB. | Idempotent. Dev DB only. |
 | `node --import tsx/esm scripts/wipe-media.ts` | **Delete every Media doc + versions.** For a storage-backend switch (disk ↔ S3); re-seed pages afterward. | **Destructive.** |
+| `node scripts/make-og.mjs` | Regenerate `public/og.webp` (1200×630 share cover): navy brand surface + the white lockup (`logo-primary-dark.svg`) + a gold rule, rasterized via `sharp`. Rerun after a logo or brand-navy change. | Idempotent (overwrites `og.webp`). |
 
 ## Infra
 
