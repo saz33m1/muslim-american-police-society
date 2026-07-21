@@ -18,14 +18,16 @@
   --brand-primary-darkest: #070a15;
 
   /* === Brand: secondary (gold) ===
-   * Ramp derived from the MAPS brand gold --brand-secondary-base (#dcab35). */
-  --brand-secondary-lightest: #fbf5e7;
-  --brand-secondary-lighter: #f5e8c6;
-  --brand-secondary-light: #e8c87c;
-  --brand-secondary-base: #dcab35;
-  --brand-secondary-dark: #b0892a;
-  --brand-secondary-darker: #6e561b;
-  --brand-secondary-darkest: #4d3c13;
+   * Deeper, richer gold than the logo's #dcab35 (which read too light as an
+   * accent). Ramp derived from --brand-secondary-base (#c9a227) with the same
+   * mix ratios as before: lightest ~88% white → darkest ~65% black. */
+  --brand-secondary-lightest: #f9f4e5;
+  --brand-secondary-lighter: #f0e5c3;
+  --brand-secondary-light: #dcc373;
+  --brand-secondary-base: #c9a227;
+  --brand-secondary-dark: #a1821f;
+  --brand-secondary-darker: #655114;
+  --brand-secondary-darkest: #46390e;
 
   /* === Neutral scale === (centered on brand neutral #808081) */
   --neutral-white: #ffffff;

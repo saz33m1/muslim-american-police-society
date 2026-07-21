@@ -54,7 +54,7 @@ text — no further edit needed unless the new org drops the Team collection
 ## 4. Swap design tokens
 
 `src/app/(frontend)/tokens.css` — the navy/gold hex ramp
-(`--brand-primary-base` `#162245`, `--brand-secondary-base` `#dcab35`) and the
+(`--brand-primary-base` `#162245`, `--brand-secondary-base` `#c9a227`) and the
 fonts (Fraunces/Lato, set in `layout.tsx`; the CSS vars stay role-named).
 Re-map the shadcn slots in `globals.css` only if hue *roles* change (e.g. which
 token is "primary" vs "secondary").
