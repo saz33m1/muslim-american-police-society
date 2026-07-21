@@ -15,6 +15,7 @@ export const defaultNavGroups: NonNullable<Header['navGroups']> = [
     href: '/about-us',
     items: [
       { label: 'Mission', href: '/about-us/mission' },
+      { label: 'Leadership', href: '/about-us/leadership' },
       { label: 'Contact', href: '/contact' },
     ],
   },
