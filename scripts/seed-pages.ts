@@ -105,50 +105,63 @@ const simplePage = (
 // ---------------------------------------------------------------------------
 // Page slices
 
-const homeSlice: PageSlice = async (_payload) => [
-  {
-    slug: 'home',
-    title: 'Home',
-    _status: 'published',
-    hero: {
-      type: 'lowImpact',
-      eyebrow: SITE_NAME,
-      richText: richText(
-        heading('Supporting Muslim officers in American law enforcement', 'h1'),
-        paragraph(
-          'Placeholder homepage copy. Replace with the organization’s own introduction — who you serve, what membership offers, and why it matters.',
-        ),
-      ),
-      links: [ctaLink('Become a member', '/join'), ctaLink('About us', '/about-us', 'outline')],
-    },
-    layout: [
-      {
-        blockType: 'content',
-        columns: [
-          proseColumn(
-            heading('What we do', 'h2'),
-            paragraph(
-              'Placeholder section. Summarize the core programs here and link out to the pages that describe them in detail.',
-            ),
-          ),
-        ],
-      },
-      {
-        blockType: 'cta',
+const homeSlice: PageSlice = async (payload) => {
+  // High Impact hero image — uploaded by ensureTrackedMedia (runs first) from
+  // public/import/prose/cover.jpg; Payload converts uploads to WebP, so the
+  // stored Media is cover.webp. Referenced here by its Media id.
+  const cover = await payload.find({
+    collection: 'media',
+    where: { filename: { equals: 'cover.webp' } },
+    limit: 1,
+    depth: 0,
+  })
+  const coverId = cover.docs[0]?.id ?? null
+
+  return [
+    {
+      slug: 'home',
+      title: 'Home',
+      _status: 'published',
+      hero: {
+        type: 'highImpact',
+        media: coverId,
         richText: richText(
-          node('paragraph', {}, [
-            text('Learn more about our '),
-            linkNode('programs', '/programs'),
-            text(' or get in touch through our '),
-            linkNode('contact page', '/contact'),
-            text('.'),
-          ]),
+          heading('Building bridges between law enforcement and communities', 'h1'),
+          paragraph(
+            'Muslim American Police Society brings together active and retired officers dedicated to serving with integrity. We foster understanding, mentor the next generation, and strengthen the bonds that hold our communities together.',
+          ),
         ),
-        links: [ctaLink('Contact', '/contact')],
+        links: [ctaLink('Learn more', '/about-us'), ctaLink('Join us', '/join', 'outline')],
       },
-    ],
-  } as unknown as PageData,
-]
+      layout: [
+        {
+          blockType: 'content',
+          columns: [
+            proseColumn(
+              heading('What we do', 'h2'),
+              paragraph(
+                'Placeholder section. Summarize the core programs here and link out to the pages that describe them in detail.',
+              ),
+            ),
+          ],
+        },
+        {
+          blockType: 'cta',
+          richText: richText(
+            node('paragraph', {}, [
+              text('Learn more about our '),
+              linkNode('programs', '/programs'),
+              text(' or get in touch through our '),
+              linkNode('contact page', '/contact'),
+              text('.'),
+            ]),
+          ),
+          links: [ctaLink('Contact', '/contact')],
+        },
+      ],
+    } as unknown as PageData,
+  ]
+}
 
 const aboutUsSlice: PageSlice = async (_payload) => [
   simplePage(
