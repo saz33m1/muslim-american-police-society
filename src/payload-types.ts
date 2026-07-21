@@ -221,13 +221,9 @@ export interface Page {
         }[]
       | null;
     /**
-     * Medium Impact needs a 4:3 landscape image (e.g. 1600×1200) so the split frame fills with no crop.
+     * Medium Impact needs a 4:3 landscape image (e.g. 1600×1200); High Impact shows a wide 16:9 band below the heading (e.g. 1920×1080). Off-ratio images are cropped.
      */
     media?: (number | null) | Media;
-    /**
-     * Navy scrim over the hero image for text legibility (brand-token gradient).
-     */
-    overlay?: ('navy-gradient' | 'none') | null;
   };
   layout: (
     | CallToActionBlock
@@ -2080,7 +2076,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         media?: T;
-        overlay?: T;
       };
   layout?:
     | T

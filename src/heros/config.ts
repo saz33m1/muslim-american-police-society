@@ -98,7 +98,7 @@ export const hero: Field = {
       admin: {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
         description:
-          'Medium Impact needs a 4:3 landscape image (e.g. 1600×1200) so the split frame fills with no crop.',
+          'Medium Impact needs a 4:3 landscape image (e.g. 1600×1200); High Impact shows a wide 16:9 band below the heading (e.g. 1920×1080). Off-ratio images are cropped.',
       },
       relationTo: 'media',
       required: true,
@@ -132,26 +132,6 @@ export const hero: Field = {
         }
         return true
       },
-    },
-    {
-      name: 'overlay',
-      type: 'select',
-      defaultValue: 'navy-gradient',
-      label: 'Background overlay',
-      admin: {
-        condition: (_, { type } = {}) => type === 'highImpact',
-        description: 'Navy scrim over the hero image for text legibility (brand-token gradient).',
-      },
-      options: [
-        {
-          label: 'Navy gradient',
-          value: 'navy-gradient',
-        },
-        {
-          label: 'None',
-          value: 'none',
-        },
-      ],
     },
   ],
   label: false,

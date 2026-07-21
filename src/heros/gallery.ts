@@ -21,35 +21,30 @@ const highImpactHeroGallery: GalleryHero<HeroData> = {
   type: 'highImpact',
   title: 'High Impact',
   description:
-    'Full-bleed hero with a background image, navy gradient scrim, centered white copy and action buttons. The primary page intro (sets the header to dark).',
+    'Split-heading page intro on a light surface: a large serif headline on the left, supporting copy and action buttons on the right, over a full-width 16:9 image band. The primary homepage hero.',
   variants: [
     {
-      name: 'With navy gradient overlay',
-      description: 'Default overlay — lifts text contrast over imagery.',
+      name: 'Headline, copy & CTAs',
+      description: 'Heading left, supporting copy + two buttons right, image band below.',
       props: {
         type: 'highImpact',
         media: sampleCapitol,
-        overlay: 'navy-gradient',
         richText: richText(
-          heading('Empowering Muslim American Public Servants', 'h1'),
+          heading('Building bridges between law enforcement and communities', 'h1'),
           paragraph(
-            'At MAPS, we foster a supportive community for Muslim American public servants, helping them excel in their careers and personal growth.',
+            'Muslim American Police Society brings together active and retired officers dedicated to serving with integrity. We foster understanding, mentor the next generation, and strengthen the bonds that hold our communities together.',
           ),
         ),
-        links: [link('Become a member'), link('Explore programs', 'outline')],
+        links: [link('Learn more'), link('Join us', 'outline')],
       },
     },
     {
-      name: 'No overlay',
-      description: 'Overlay disabled — raw image behind the copy.',
+      name: 'Heading only',
+      description: 'No supporting copy — headline left, single CTA right, image below.',
       props: {
         type: 'highImpact',
         media: sampleSenate,
-        overlay: 'none',
-        richText: richText(
-          heading('Serving the community and the country', 'h1'),
-          paragraph('Use when the image is already dark enough for legible text.'),
-        ),
+        richText: richText(heading('Serving the community and the country', 'h1')),
         links: [link('Join MAPS')],
       },
     },
@@ -105,10 +100,7 @@ const lowImpactHeroGallery: GalleryHero<HeroData> = {
       props: {
         type: 'lowImpact',
         eyebrow: 'Member Portal',
-        breadcrumbs: [
-          { label: 'Member Portal', url: '#' },
-          { label: 'Professional Development' },
-        ],
+        breadcrumbs: [{ label: 'Member Portal', url: '#' }, { label: 'Professional Development' }],
         richText: richText(
           heading('Recent MAPS Academy Programs', 'h2'),
           paragraph(
