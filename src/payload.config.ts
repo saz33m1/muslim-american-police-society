@@ -119,7 +119,8 @@ export default buildConfig({
         ? {
             email: process.env.PAYLOAD_AUTOLOGIN_EMAIL || 'dev@payloadcms.com',
             password: process.env.PAYLOAD_AUTOLOGIN_PASSWORD || 'test',
-            prefillOnly: true,
+            // Full auto-auth by default; set PAYLOAD_AUTOLOGIN_PREFILL=1 to only prefill.
+            prefillOnly: process.env.PAYLOAD_AUTOLOGIN_PREFILL === '1',
           }
         : false,
     livePreview: {
