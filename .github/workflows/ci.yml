@@ -45,6 +45,10 @@ jobs:
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       CRON_SECRET: ci-cron-secret
       PREVIEW_SECRET: ci-preview-secret
+      # Placeholder tenant so the modules that read it at import (src/proxy.ts,
+      # OutsetaScript) don't throw during build/dev; no network call is made at
+      # build time, matching how local dev runs against a dead placeholder domain.
+      OUTSETA_DOMAIN: example.outseta.com
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
@@ -83,6 +87,10 @@ jobs:
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       CRON_SECRET: ci-cron-secret
       PREVIEW_SECRET: ci-preview-secret
+      # Placeholder tenant so the modules that read it at import (src/proxy.ts,
+      # OutsetaScript) don't throw during build/dev; no network call is made at
+      # build time, matching how local dev runs against a dead placeholder domain.
+      OUTSETA_DOMAIN: example.outseta.com
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
@@ -132,6 +140,10 @@ jobs:
       NEXT_PUBLIC_SERVER_URL: http://localhost:3000
       CRON_SECRET: ci-cron-secret
       PREVIEW_SECRET: ci-preview-secret
+      # Placeholder tenant so the modules that read it at import (src/proxy.ts,
+      # OutsetaScript) don't throw during build/dev; no network call is made at
+      # build time, matching how local dev runs against a dead placeholder domain.
+      OUTSETA_DOMAIN: example.outseta.com
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
