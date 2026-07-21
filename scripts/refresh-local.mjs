@@ -32,13 +32,16 @@ import { assertLocalTarget } from './refresh-lock.mjs'
 
 const SRC_ENV = 'production'
 // Pin the project id (see refresh-staging.mjs) so we never depend on `railway link`.
-const PROJECT_ID = process.env.RAILWAY_PROJECT_ID ?? 'aea720c6-7841-4e7a-955c-945a5ab210e7'
+// Required, not defaulted — a fallback would pull another org's production data.
+const PROJECT_ID = process.env.RAILWAY_PROJECT_ID
 const YES = process.argv.includes('--yes') || process.argv.includes('-y')
 
 const die = (msg) => {
   console.error(`!! ${msg}`)
   process.exit(1)
 }
+
+if (!PROJECT_ID) die('RAILWAY_PROJECT_ID is not set. Set it in .env (see .env.example).')
 
 // Read all variables for a service+env as a { KEY: value } map (--kv, nothing to
 // JSON-parse). Runs `railway` through the platform shell where the shim lives.

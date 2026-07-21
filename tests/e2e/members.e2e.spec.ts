@@ -8,7 +8,7 @@ test('members portal landing is public', async ({ page }) => {
 })
 
 test('a gated members route redirects an anonymous visitor to home', async ({ page }) => {
-  await page.goto('/members/community-building')
+  await page.goto('/members/resources')
   await expect(page).toHaveURL('http://localhost:3000/')
 })
 
@@ -27,9 +27,9 @@ test('anonymous visitors see the header Login control', async ({ page }) => {
 // Outseta's global a[href^="/members"] hide rule. The seed (#250) gives this post an
 // inline /members link. (Outseta's script isn't loaded here; G10 alone is asserted.)
 test('a members link in post body renders as a visible link', async ({ page }) => {
-  await page.goto('/latest-updates/maps-academy-climbing-the-federal-ladder')
+  await page.goto('/latest-updates/welcome-to-our-new-site')
 
   const memberLink = page.locator('.payload-richtext a[href="/members/portal"]')
-  await expect(memberLink).toHaveText('event link')
+  await expect(memberLink).toHaveText('member portal')
   await expect(memberLink).toBeVisible()
 })

@@ -14,8 +14,10 @@ import React from 'react'
  * root layout, not this route-group layout, so the SDK could load first and throw
  * "[domain] is a required option".)
  */
-// Same var name/default as src/proxy.ts's OUTSETA_DOMAIN — keep in sync.
-const OUTSETA_DOMAIN = process.env.OUTSETA_DOMAIN ?? 'mapsnational.outseta.com'
+// Same var name as src/proxy.ts's OUTSETA_DOMAIN — keep in sync. No fallback
+// there or here: a default tenant would point signup/login at another org.
+const OUTSETA_DOMAIN = process.env.OUTSETA_DOMAIN
+if (!OUTSETA_DOMAIN) throw new Error('OUTSETA_DOMAIN is not set (see .env.example).')
 
 export const OutsetaScript: React.FC = () => {
   return (

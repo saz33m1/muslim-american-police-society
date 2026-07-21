@@ -6,9 +6,8 @@ import { cn } from '@/utilities/ui'
 
 /**
  * Shared scroll-snap carousel with optional autoplay. One primitive backing the
- * Testimonials slider, the home Latest Updates slider and the MediaGallery
- * community slider — no carousel dependency, just a horizontal snap track plus
- * prev/next controls.
+ * Latest Updates slider and the MediaGallery slider — no carousel dependency,
+ * just a horizontal snap track plus prev/next controls.
  *
  * Each child becomes a slide (`shrink-0 snap-start` + the caller's
  * `slideClassName` for width). Autoplay advances one slide every `interval`ms,

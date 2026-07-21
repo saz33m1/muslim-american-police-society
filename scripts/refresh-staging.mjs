@@ -32,15 +32,18 @@ import { assertRefreshDirection } from './refresh-lock.mjs'
 const SRC_ENV = 'production'
 const DST_ENV = 'staging'
 // Pin the project id so we never depend on the CWD-based `railway link` (that
-// match is case-sensitive on the directory path). Override via env for a fork;
-// the literal below is the maps-website project.
-const PROJECT_ID = process.env.RAILWAY_PROJECT_ID ?? 'aea720c6-7841-4e7a-955c-945a5ab210e7'
+// match is case-sensitive on the directory path). Required, not defaulted: a
+// wrong-project fallback would point this destructive script at another org's
+// Railway environments.
+const PROJECT_ID = process.env.RAILWAY_PROJECT_ID
 const YES = process.argv.includes('--yes') || process.argv.includes('-y')
 
 const die = (msg) => {
   console.error(`!! ${msg}`)
   process.exit(1)
 }
+
+if (!PROJECT_ID) die('RAILWAY_PROJECT_ID is not set. Set it in .env (see .env.example).')
 
 // Read all variables for a service+env as a { KEY: value } map. Uses --kv so
 // there's nothing to JSON-parse. Runs `railway` through the platform shell
@@ -222,15 +225,20 @@ docker(['run', '--rm', '-e', 'SRC', '-e', 'DST', 'postgres:18', 'sh', '-lc', sql
 // Basic gate (see proxy.ts matcher), so this needs only a Payload admin login:
 // your PROD account, which came over in the dump. Best-effort: skipped with a
 // hint when STAGING_ADMIN_EMAIL / STAGING_ADMIN_PASSWORD aren't set. Idempotent.
+// The Railway-internal host won't resolve off-platform. No hardcoded fallback:
+// pointing the reindex at another org's staging site is worse than skipping it.
 let STAGE_URL = stage.NEXT_PUBLIC_SERVER_URL || ''
-if (!/^https?:\/\//.test(STAGE_URL) || STAGE_URL.includes('.railway.internal')) {
-  STAGE_URL = 'https://stage.mapsnational.org' // internal host won't resolve off-platform
-}
-STAGE_URL = STAGE_URL.replace(/\/$/, '')
+const stageUrlUsable = /^https?:\/\//.test(STAGE_URL) && !STAGE_URL.includes('.railway.internal')
+STAGE_URL = stageUrlUsable ? STAGE_URL.replace(/\/$/, '') : ''
 const S_ADMIN_EMAIL = process.env.STAGING_ADMIN_EMAIL
 const S_ADMIN_PASSWORD = process.env.STAGING_ADMIN_PASSWORD
 
-if (!S_ADMIN_EMAIL || !S_ADMIN_PASSWORD) {
+if (!STAGE_URL) {
+  console.log(
+    "\n>> skipping search reindex: staging's NEXT_PUBLIC_SERVER_URL is unset or internal-only.\n" +
+      '   Set it to the public staging origin, or click Reindex on the Search collection in staging admin.',
+  )
+} else if (!S_ADMIN_EMAIL || !S_ADMIN_PASSWORD) {
   console.log(
     '\n>> skipping search reindex: set STAGING_ADMIN_EMAIL / STAGING_ADMIN_PASSWORD (your prod\n' +
       '   admin login) to auto-rebuild, or click Reindex on the Search collection in staging admin.',

@@ -38,7 +38,7 @@ function summarize(violations: Violation[]): string {
 const PAGES = [
   { name: 'home', path: '/' },
   { name: 'programs hub', path: '/programs' },
-  { name: 'post detail', path: '/latest-updates/maps-academy-climbing-the-federal-ladder' },
+  { name: 'post detail', path: '/latest-updates/welcome-to-our-new-site' },
   { name: 'admin login', path: '/admin/login' },
 ]
 

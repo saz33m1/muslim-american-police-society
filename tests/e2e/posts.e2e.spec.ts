@@ -8,10 +8,10 @@ test('latest-updates archive lists posts', async ({ page }) => {
 })
 
 test('a post detail renders its masthead title', async ({ page }) => {
-  await page.goto('/latest-updates/maps-academy-climbing-the-federal-ladder')
+  await page.goto('/latest-updates/welcome-to-our-new-site')
   const h1 = page.locator('h1').first()
   await expect(h1).toBeVisible()
-  await expect(h1).toContainText(/MAPS Academy/i)
+  await expect(h1).toContainText(/Welcome to our new site/i)
 })
 
 test('a draft post is not reachable on the public site', async ({ page }) => {

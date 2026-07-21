@@ -24,18 +24,20 @@ text — no further edit needed unless the new org drops the Team collection
 
 ## 2. Set environment variables
 
-- `OUTSETA_DOMAIN` — the new org's Outseta tenant domain. Unprefixed (both
-  `OutsetaScript/index.tsx` and `proxy.ts` are server-side, no client
-  build-time inlining needed). If the new org has no membership area, drop
+- `OUTSETA_DOMAIN` — the new org's Outseta tenant domain. **Required**: both
+  `OutsetaScript/index.tsx` and `proxy.ts` throw when it is unset, deliberately —
+  a default tenant would point login and member-token verification at another
+  org's account. Unprefixed (both are server-side, no build-time inlining). If the new org has no membership area, drop
   Outseta entirely instead (see step 5b) rather than leaving it configured
   and unused — it's a 7-file architectural integration, not a toggle.
 - `RAILWAY_PROJECT_ID` — new Railway project id, used by
   `refresh-staging.mjs` / `refresh-local.mjs` / `backup-prod.mjs` to pin
-  `railway` CLI calls.
-- `NEXT_PUBLIC_SERVER_URL` — the new domain (also feeds `next-sitemap.config.cjs`
-  and the `refresh-staging.mjs` search-reindex fallback at line ~227, which
-  falls back to a hardcoded `stage.mapsnational.org` only if this var is
-  unset or resolves to a Railway-internal host).
+  `railway` CLI calls. **Required**: all three exit if it is unset, so a stale
+  fallback can never aim these destructive scripts at another org's project.
+- `NEXT_PUBLIC_SERVER_URL` — the new domain (also feeds `next-sitemap.config.cjs`).
+  `refresh-staging.mjs` reads staging's copy of this var to reach the deployed
+  site for its search reindex; if it is unset or resolves to a Railway-internal
+  host, the reindex step is skipped with a hint (no hardcoded fallback).
 - See `.env.example` for the full set (DB, S3, secrets, optional Resend/reCAPTCHA).
 
 ## 3. Drop in asset files

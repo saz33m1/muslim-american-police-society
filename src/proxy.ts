@@ -19,9 +19,12 @@ import { createRemoteJWKSet, jwtVerify } from 'jose'
  */
 
 // Server component/module — reads at request time, so a plain (unprefixed) env
-// var works; no NEXT_PUBLIC_ build-time inlining needed. Same var name and
-// default as OutsetaScript/index.tsx (the client-side SDK init) — keep in sync.
-const OUTSETA_DOMAIN = process.env.OUTSETA_DOMAIN ?? 'mapsnational.outseta.com'
+// var works; no NEXT_PUBLIC_ build-time inlining needed. Same var name as
+// OutsetaScript/index.tsx (the client-side SDK init) — keep in sync.
+// No fallback: defaulting to some other org's tenant would verify member tokens
+// against the wrong Outseta account. Unset is a config error, not a default.
+const OUTSETA_DOMAIN = process.env.OUTSETA_DOMAIN
+if (!OUTSETA_DOMAIN) throw new Error('OUTSETA_DOMAIN is not set (see .env.example).')
 export const LOGIN_URL = `https://${OUTSETA_DOMAIN}/auth?widgetMode=login#o-anonymous`
 
 // Lazily fetched + cached at module scope (Edge runtime). Verifies token signatures.

@@ -73,9 +73,6 @@ export interface Config {
     categories: Category;
     'team-categories': TeamCategory;
     team: Team;
-    testimonials: Testimonial;
-    'video-categories': VideoCategory;
-    'academy-videos': AcademyVideo;
     users: User;
     redirects: Redirect;
     forms: Form;
@@ -100,9 +97,6 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'team-categories': TeamCategoriesSelect<false> | TeamCategoriesSelect<true>;
     team: TeamSelect<false> | TeamSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
-    'video-categories': VideoCategoriesSelect<false> | VideoCategoriesSelect<true>;
-    'academy-videos': AcademyVideosSelect<false> | AcademyVideosSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -253,8 +247,6 @@ export interface Page {
     | ComparisonTableBlock
     | ContactDetailsBlock
     | TeamBlock
-    | TestimonialsBlock
-    | AcademyVideosBlock
     | MapLocationCardsBlock
     | MemberPortalHeroBlock
   )[];
@@ -1698,183 +1690,6 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TestimonialsBlock".
- */
-export interface TestimonialsBlock {
-  eyebrow?: string | null;
-  heading?: string | null;
-  intro?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  type: 'all' | 'career' | 'programs';
-  populateBy?: ('collection' | 'selection') | null;
-  /**
-   * 0 = show all.
-   */
-  limit?: number | null;
-  selectedTestimonials?: (number | Testimonial)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'testimonials';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: number;
-  /**
-   * Person being quoted.
-   */
-  author: string;
-  /**
-   * Which source the testimonial belongs to. Drives block filtering.
-   */
-  type: 'career' | 'programs';
-  /**
-   * Optional — e.g. "Program graduate" or an employer.
-   */
-  role?: string | null;
-  quote: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  headshot?: (number | null) | Media;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  /**
-   * Source CMS Item ID — import idempotency key. Do not edit.
-   */
-  legacyItemId?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AcademyVideosBlock".
- */
-export interface AcademyVideosBlock {
-  eyebrow?: string | null;
-  heading?: string | null;
-  intro?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  /**
-   * Leave empty to show every category.
-   */
-  categories?: (number | VideoCategory)[] | null;
-  /**
-   * 0 = show all.
-   */
-  limit?: number | null;
-  selectedVideos?: (number | AcademyVideo)[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'academyVideos';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "video-categories".
- */
-export interface VideoCategory {
-  id: number;
-  title: string;
-  /**
-   * Lower numbers sort first in the filter bar.
-   */
-  order?: number | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  /**
-   * Source CMS Item ID — import idempotency key. Do not edit.
-   */
-  legacyItemId?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "academy-videos".
- */
-export interface AcademyVideo {
-  id: number;
-  title: string;
-  /**
-   * Embed/watch URL (e.g. YouTube). Stored verbatim — never fetched.
-   */
-  videoUrl: string;
-  /**
-   * Optional short summary shown on the card.
-   */
-  description?: string | null;
-  /**
-   * Optional poster image; falls back to a placeholder.
-   */
-  thumbnail?: (number | null) | Media;
-  /**
-   * Drives the on-page filter.
-   */
-  categories?: (number | VideoCategory)[] | null;
-  /**
-   * Within-list sort; lower numbers first.
-   */
-  order?: number | null;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  /**
-   * Source CMS Item ID — import idempotency key. Do not edit.
-   */
-  legacyItemId?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "MapLocationCardsBlock".
  */
 export interface MapLocationCardsBlock {
@@ -2165,18 +1980,6 @@ export interface PayloadLockedDocument {
         value: number | Team;
       } | null)
     | ({
-        relationTo: 'testimonials';
-        value: number | Testimonial;
-      } | null)
-    | ({
-        relationTo: 'video-categories';
-        value: number | VideoCategory;
-      } | null)
-    | ({
-        relationTo: 'academy-videos';
-        value: number | AcademyVideo;
-      } | null)
-    | ({
         relationTo: 'users';
         value: number | User;
       } | null)
@@ -2299,8 +2102,6 @@ export interface PagesSelect<T extends boolean = true> {
         comparisonTable?: T | ComparisonTableBlockSelect<T>;
         contactDetails?: T | ContactDetailsBlockSelect<T>;
         team?: T | TeamBlockSelect<T>;
-        testimonials?: T | TestimonialsBlockSelect<T>;
-        academyVideos?: T | AcademyVideosBlockSelect<T>;
         mapLocationCards?: T | MapLocationCardsBlockSelect<T>;
         memberPortalHero?: T | MemberPortalHeroBlockSelect<T>;
       };
@@ -2760,36 +2561,6 @@ export interface TeamBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TestimonialsBlock_select".
- */
-export interface TestimonialsBlockSelect<T extends boolean = true> {
-  eyebrow?: T;
-  heading?: T;
-  intro?: T;
-  type?: T;
-  populateBy?: T;
-  limit?: T;
-  selectedTestimonials?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "AcademyVideosBlock_select".
- */
-export interface AcademyVideosBlockSelect<T extends boolean = true> {
-  eyebrow?: T;
-  heading?: T;
-  intro?: T;
-  populateBy?: T;
-  categories?: T;
-  limit?: T;
-  selectedVideos?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "MapLocationCardsBlock_select".
  */
 export interface MapLocationCardsBlockSelect<T extends boolean = true> {
@@ -3015,52 +2786,6 @@ export interface TeamSelect<T extends boolean = true> {
   order?: T;
   orderSecondary?: T;
   inactive?: T;
-  generateSlug?: T;
-  slug?: T;
-  legacyItemId?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  author?: T;
-  type?: T;
-  role?: T;
-  quote?: T;
-  headshot?: T;
-  generateSlug?: T;
-  slug?: T;
-  legacyItemId?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "video-categories_select".
- */
-export interface VideoCategoriesSelect<T extends boolean = true> {
-  title?: T;
-  order?: T;
-  generateSlug?: T;
-  slug?: T;
-  legacyItemId?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "academy-videos_select".
- */
-export interface AcademyVideosSelect<T extends boolean = true> {
-  title?: T;
-  videoUrl?: T;
-  description?: T;
-  thumbnail?: T;
-  categories?: T;
-  order?: T;
   generateSlug?: T;
   slug?: T;
   legacyItemId?: T;

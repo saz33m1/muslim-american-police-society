@@ -1,6 +1,5 @@
 import type { Block } from 'payload'
 
-import { AcademyVideos } from './AcademyVideos/config'
 import { Archive } from './ArchiveBlock/config'
 import { CallToAction } from './CallToAction/config'
 import { CardGrid } from './CardGrid/config'
@@ -19,7 +18,6 @@ import { MediaGrid } from './MediaGrid/config'
 import { MediaSlider } from './MediaSlider/config'
 import { PricingTiers } from './PricingTiers/config'
 import { Team } from './Team/config'
-import { Testimonials } from './Testimonials/config'
 import { Timeline } from './Timeline/config'
 
 /**
@@ -50,8 +48,6 @@ export const layoutBlocks: Block[] = [
   ComparisonTable,
   ContactDetails,
   Team,
-  Testimonials,
-  AcademyVideos,
   MapLocationCards,
   MemberPortalHero,
 ]

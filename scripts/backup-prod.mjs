@@ -25,7 +25,9 @@ import { mkdirSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 const SRC_ENV = 'production'
-const PROJECT_ID = process.env.RAILWAY_PROJECT_ID ?? 'aea720c6-7841-4e7a-955c-945a5ab210e7' // maps-website (see refresh-staging.mjs)
+// Required, not defaulted (see refresh-staging.mjs) — a fallback would dump
+// another org's production database.
+const PROJECT_ID = process.env.RAILWAY_PROJECT_ID
 
 const argOut = (() => {
   const i = process.argv.indexOf('--out')
@@ -37,6 +39,8 @@ const die = (msg) => {
   console.error(`!! ${msg}`)
   process.exit(1)
 }
+
+if (!PROJECT_ID) die('RAILWAY_PROJECT_ID is not set. Set it in .env (see .env.example).')
 
 function railwayVars(service, env) {
   let out

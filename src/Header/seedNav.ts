@@ -6,39 +6,26 @@ import type { Header } from '@/payload-types'
 // Now it seeds the `header` global once so it can be managed in admin. Slugs match
 // the seeded pages / app routes. Edit these in admin after seeding; this only
 // fills an EMPTY global, so it never clobbers later edits.
+// Every href here must resolve to a page that scripts/seed-pages.ts creates (or
+// an app route), or the nav ships dead links on a fresh database. Grow this
+// alongside the seed slices as real pages are added.
 export const defaultNavGroups: NonNullable<Header['navGroups']> = [
   {
     label: 'About Us',
     href: '/about-us',
     items: [
       { label: 'Mission', href: '/about-us/mission' },
-      { label: 'Board & Leadership', href: '/about-us/board-leadership' },
-      { label: 'Advisory Council', href: '/about-us/advisory-council' },
-      { label: 'State Committees', href: '/about-us/state-committees' },
-      { label: 'Partners', href: '/about-us/partners' },
-      { label: 'FAQ', href: '/about-us/faq' },
-      { label: 'Press', href: '/press' },
-      // Contact folded into About Us (no longer a standalone bottom-row link).
       { label: 'Contact', href: '/contact' },
     ],
   },
   {
     label: 'Programs',
     href: '/programs',
-    items: [
-      // MAPS Events folded in at the top (the old Events section is retired).
-      { label: 'MAPS Events', href: '/events/maps' },
-      { label: 'Career Support', href: '/programs/career-support' },
-      { label: 'Community Building', href: '/programs/community-building' },
-      { label: 'Legal Advocacy', href: '/programs/legal-advocacy' },
-      { label: 'Policy Initiatives', href: '/programs/policy-initiatives' },
-      { label: 'Private Sector Engagement', href: '/programs/private-sector-engagement' },
-    ],
+    items: [],
   },
 ]
 
-// Press now lives inside the About Us section (before Contact), so the bottom-row
-// flat links are empty. Kept as an (empty) array so admins can still add links.
+// Bottom-row flat links. Kept as an (empty) array so admins can still add links.
 export const defaultFlatLinks: NonNullable<Header['flatLinks']> = []
 
 /**

@@ -1,7 +1,5 @@
 import type React from 'react'
 
-import { AcademyVideos } from './AcademyVideos/config'
-import { AcademyVideosBlock } from './AcademyVideos/Component'
 import { Archive } from './ArchiveBlock/config'
 import { ArchiveBlock } from './ArchiveBlock/Component'
 import { CallToAction } from './CallToAction/config'
@@ -38,8 +36,6 @@ import { PricingTiers } from './PricingTiers/config'
 import { PricingTiersBlock } from './PricingTiers/Component'
 import { Team } from './Team/config'
 import { TeamBlock } from './Team/Component'
-import { Testimonials } from './Testimonials/config'
-import { TestimonialsBlock } from './Testimonials/Component'
 import { Timeline } from './Timeline/config'
 import { TimelineBlock } from './Timeline/Component'
 
@@ -74,8 +70,6 @@ export const blockComponents: Record<string, BlockComponent> = {
   [ComparisonTable.slug]: ComparisonTableBlock,
   [ContactDetails.slug]: ContactDetailsBlock,
   [Team.slug]: TeamBlock,
-  [Testimonials.slug]: TestimonialsBlock,
-  [AcademyVideos.slug]: AcademyVideosBlock,
   [MapLocationCards.slug]: MapLocationCardsBlock,
   [MemberPortalHeroConfig.slug]: MemberPortalHeroBlock,
 }

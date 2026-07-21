@@ -1,5 +1,5 @@
 {
-  "name": "maps-website",
+  "name": "muslim-american-police-society",
   "version": "1.0.0",
   "description": "Website template for Payload",
   "license": "MIT",
@@ -15,9 +15,6 @@
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "ii": "cross-env NODE_OPTIONS=--no-deprecation pnpm --ignore-workspace install",
     "import": "cross-env NODE_OPTIONS=--no-deprecation node --import tsx/esm src/import/cli.ts",
-    "import:prose": "cross-env NODE_OPTIONS=--no-deprecation node --import tsx/esm scripts/import-prose.ts",
-    "rehost:images": "cross-env NODE_OPTIONS=--no-deprecation node --import tsx/esm scripts/rehost-images.ts",
-    "import:slider": "cross-env NODE_OPTIONS=--no-deprecation node --import tsx/esm scripts/import-slider.ts",
     "backup:prod": "node scripts/backup-prod.mjs",
     "refresh:staging": "node scripts/refresh-staging.mjs",
     "refresh:staging:check": "node scripts/refresh-lock.check.mjs",
