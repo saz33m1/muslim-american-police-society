@@ -28,6 +28,7 @@ import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import type { Payload } from 'payload'
 
 import { SITE_NAME } from '../src/utilities/brand'
+import { OUTSETA_REGISTER_HREF } from '../src/components/OutsetaRegisterLink'
 
 type PageData = RequiredDataFromCollectionSlug<'pages'>
 
@@ -101,6 +102,19 @@ const simplePage = (
       },
     ],
   }) as unknown as PageData
+
+// Resolve a Media id by (partial) stored filename. Used for hero images whose
+// source lives in the gitignored Photo Library (local-only): returns null when the
+// object isn't in this DB (CI / prod-before-media-cutover) so the caller can fall back.
+const findMediaByFilename = async (payload: Payload, base: string): Promise<number | null> => {
+  const res = await payload.find({
+    collection: 'media',
+    where: { filename: { like: base } },
+    limit: 1,
+    depth: 0,
+  })
+  return (res.docs[0]?.id as number | undefined) ?? null
+}
 
 // ---------------------------------------------------------------------------
 // Page slices
@@ -321,18 +335,93 @@ const resourcesSlice: PageSlice = async (_payload) => [
   ),
 ]
 
-const joinSlice: PageSlice = async (_payload) => [
-  simplePage(
-    'join',
-    'Join',
-    'Membership',
-    'Placeholder membership overview — who is eligible and what membership includes.',
-    [
-      'Placeholder membership copy. Describe eligibility, dues (if any), and the benefits of joining.',
-      'Membership signup is handled by Outseta. Wire the join flow to the plans configured in your Outseta tenant.',
-    ],
-  ),
-]
+// Join — membership page rebuilt from the source "Membership Opportunities" page
+// with our own blocks: a hero, a two-tier PricingTiers, and a closing CTA. Copy is
+// generalized to national MAPS (the source was NJ-specific). Tier + hero CTAs use
+// the Outseta-register sentinel href (see OutsetaRegisterLink / CMSLink). The hero
+// photo lives in the local-only Photo Library, so it is resolved by filename with a
+// LowImpact fallback for CI / prod-before-media-cutover.
+const JOIN_HERO_PHOTO = '1080925567501035' // Photo Library: diverse officer group shot
+const joinCta = (label: string) => ctaLink(label, OUTSETA_REGISTER_HREF)
+
+const joinSlice: PageSlice = async (payload) => {
+  const heroId = await findMediaByFilename(payload, JOIN_HERO_PHOTO)
+  const heroLead =
+    'Join a national community of Muslim law enforcement officers and civilian support staff serving with integrity. Your membership strengthens our mentorship, outreach, and the bonds that hold our communities together.'
+  const hero = heroId
+    ? {
+        type: 'highImpact',
+        media: heroId,
+        richText: richText(heading('Become a Member', 'h1'), paragraph(heroLead)),
+        links: [joinCta('Join now')],
+      }
+    : {
+        type: 'lowImpact',
+        eyebrow: 'Join MAPS',
+        richText: richText(heading('Become a Member', 'h1'), paragraph(heroLead)),
+        links: [joinCta('Join now')],
+      }
+
+  return [
+    {
+      slug: 'join',
+      title: 'Join',
+      _status: 'published',
+      hero,
+      layout: [
+        {
+          blockType: 'pricingTiers',
+          header: {
+            enableHeader: true,
+            heading: 'Membership',
+            body: richText(
+              paragraph(
+                'Two ways to belong, each contributing uniquely to our mission and amplifying our collective impact in the community.',
+              ),
+            ),
+            anchorId: 'membership',
+          },
+          columns: '2',
+          plans: [
+            {
+              name: 'Regular Membership',
+              description:
+                'Open to all sworn full-time, part-time, or retired Muslim law enforcement officers in good standing with their respective agencies.',
+              features: [
+                { feature: 'Full voting rights in the organization' },
+                { feature: 'Mentorship and professional networking' },
+                { feature: 'Community outreach and member events' },
+              ],
+              featured: true,
+              links: [joinCta('Join now')],
+            },
+            {
+              name: 'Supporting Membership',
+              description:
+                'Open to all full-time, part-time, or retired Muslim civilian support staff of a law enforcement agency in good standing.',
+              features: [
+                { feature: 'Networking with members nationwide' },
+                { feature: 'Invitations to events and programs' },
+                { feature: 'Support the mission and community' },
+              ],
+              links: [joinCta('Join now')],
+            },
+          ],
+        },
+        {
+          blockType: 'cta',
+          richText: richText(
+            heading('Ready to serve with us?', 'h2'),
+            paragraph(
+              'Become part of a growing national network of officers and support staff. Questions about membership? Get in touch.',
+            ),
+          ),
+          links: [joinCta('Join now'), ctaLink('Contact us', '/contact', 'outline')],
+        },
+      ],
+    } as unknown as PageData,
+  ]
+}
 
 // Seeded only because DONATE_CTA in src/utilities/brand.ts puts a /donate button
 // in the header. If this org has no donation flow, delete this slice AND the
@@ -594,7 +683,10 @@ const META_BY_SLUG: Record<string, { title: string; description: string }> = {
   },
   join: {
     title: 'Join',
-    description: 'Placeholder meta description. Summarize membership eligibility and benefits.',
+    description:
+      'Membership in ' +
+      SITE_NAME +
+      ' is open to Muslim law enforcement officers and civilian support staff nationwide.',
   },
   contact: {
     title: 'Contact',
