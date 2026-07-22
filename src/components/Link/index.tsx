@@ -1,6 +1,7 @@
 import { ExternalLink } from 'lucide-react'
 
 import { Button, type ButtonProps } from '@/components/ui/button'
+import { OUTSETA_REGISTER_HREF, OutsetaRegisterLink } from '@/components/OutsetaRegisterLink'
 import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
@@ -45,6 +46,17 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   if (!href) return null
 
   const size = appearance === 'link' ? 'clear' : sizeFromProps
+
+  // A CTA authored with the sentinel href opens the Outseta signup modal instead
+  // of navigating (membership hero + pricing tiers). Every other href is unchanged.
+  if (href === OUTSETA_REGISTER_HREF) {
+    return (
+      <OutsetaRegisterLink appearance={appearance} className={className} label={label} size={size}>
+        {children}
+      </OutsetaRegisterLink>
+    )
+  }
+
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
   // New-tab links warn the user before the context change (WCAG 3.2.5 / G201):
