@@ -2,7 +2,7 @@
 
 Spec: `SPEC.md`. Branch: `feat/committees` (off `staging`). One task, RED→GREEN→build→commit.
 
-## Task 1 — Seed the Committees page + nav link
+## Task 1 — Seed the Committees page + nav link ✅ done
 
 **Goal:** a seeded `about-us/committees` page (LowImpact hero + 3-card CardGrid +
 CTA), national MAPS voice, deduped focus-area copy, plus an About Us nav link.

@@ -64,6 +64,16 @@ const paragraph = (value: string) => node('paragraph', {}, [text(value)])
 const linkNode = (label: string, url: string, newTab = false) =>
   node('link', { version: 3, fields: { linkType: 'custom', url, newTab } }, [text(label)])
 
+// Bulleted list (Lexical): a `list` node of `listitem` children. `value` is the
+// 1-based item index Lexical stores on each item.
+const listItem = (value: string, i: number) => node('listitem', { value: i + 1 }, [text(value)])
+const bulletList = (...items: string[]) =>
+  node(
+    'list',
+    { listType: 'bullet', tag: 'ul', start: 1 },
+    items.map((v, i) => listItem(v, i)),
+  )
+
 const proseColumn = (...children: unknown[]) => ({
   size: 'full',
   richText: richText(...children),
@@ -256,6 +266,81 @@ const aboutUsSlice: PageSlice = async (_payload) => [
     'Placeholder mission copy. State the organization’s mission in its own words.',
     'Placeholder values copy. List the values that guide the work.',
   ]),
+]
+
+// Committees — the same block shape as About Us (LowImpact hero + 3-card CardGrid
+// + CTA). Each card is one committee: an intro line plus a bulleted list of its
+// focus areas. National MAPS voice; icons are from the curated CardGrid set.
+const committeesSlice: PageSlice = async (_payload) => [
+  {
+    slug: 'about-us/committees',
+    title: 'Committees',
+    _status: 'published',
+    hero: {
+      type: 'lowImpact',
+      eyebrow: "How we're organized",
+      richText: richText(
+        heading('Committees', 'h1'),
+        paragraph(
+          'Muslim American Police Society is structured into committees, each owning a distinct area of focus so members can engage where they have the most impact.',
+        ),
+      ),
+      links: [ctaLink('Become a member', '/join'), ctaLink('Contact us', '/contact', 'outline')],
+    },
+    layout: [
+      {
+        blockType: 'cardGrid',
+        header: {
+          enableHeader: true,
+          eyebrow: 'MAPS',
+          heading: 'Our Committees',
+          anchorId: 'committees',
+        },
+        columns: '3',
+        mediaType: 'none',
+        items: [
+          {
+            heading: 'Community Outreach',
+            lucideIcon: 'megaphone',
+            body: richText(
+              paragraph(
+                'Builds trust between officers and the communities they serve through public engagement.',
+              ),
+              bulletList('Education and information', 'Event planning', 'Community partnerships'),
+            ),
+          },
+          {
+            heading: 'Membership Services',
+            lucideIcon: 'users',
+            body: richText(
+              paragraph(
+                'Supports members across their careers, from recruitment through leadership.',
+              ),
+              bulletList('Recruiting and onboarding', 'Mentoring', 'Scholarships', 'Member events'),
+            ),
+          },
+          {
+            heading: 'Business Development',
+            lucideIcon: 'briefcase',
+            body: richText(
+              paragraph('Grows the resources that sustain the organization and its programs.'),
+              bulletList('Corporate partnerships', 'Sponsorships', 'Fundraising'),
+            ),
+          },
+        ],
+      },
+      {
+        blockType: 'cta',
+        richText: richText(
+          heading('Get involved', 'h2'),
+          paragraph(
+            'Every committee is powered by members who give their time. Join us and help lead the work.',
+          ),
+        ),
+        links: [ctaLink('Become a member', '/join')],
+      },
+    ],
+  } as unknown as PageData,
 ]
 
 // Leadership — renders the `team` collection through the Team block (grouped,
@@ -596,6 +681,7 @@ const postsSlice: PageSlice = async (payload) => {
 const PAGE_SLICES: PageSlice[] = [
   homeSlice,
   aboutUsSlice,
+  committeesSlice,
   leadershipSlice,
   programsSlice,
   resourcesSlice,
@@ -676,6 +762,10 @@ const META_BY_SLUG: Record<string, { title: string; description: string }> = {
   'about-us/leadership': {
     title: 'Leadership',
     description: 'Meet the Executive Board of ' + SITE_NAME + '.',
+  },
+  'about-us/committees': {
+    title: 'Committees',
+    description: 'The committees of ' + SITE_NAME + ' and the focus areas each one leads.',
   },
   programs: {
     title: 'Programs',
