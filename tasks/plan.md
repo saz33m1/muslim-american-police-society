@@ -1,55 +1,36 @@
-# Plan — `/join` membership page
+# Plan — `/about-us/committees` page
 
-Spec: `SPEC.md`. Branch: `feat/join-page` (off `staging`). Two tasks, each RED→GREEN→build→commit.
+Spec: `SPEC.md`. Branch: `feat/committees` (off `staging`). One task, RED→GREEN→build→commit.
 
-## Task 1 — Outseta "register" CTA control
+## Task 1 — Seed the Committees page + nav link
 
-**Goal:** a CTA whose href is the sentinel `#o-register` opens the Outseta signup
-modal instead of navigating, reusing the SDK the footer login already uses.
+**Goal:** a seeded `about-us/committees` page (LowImpact hero + 3-card CardGrid +
+CTA), national MAPS voice, deduped focus-area copy, plus an About Us nav link.
+Clone of `aboutUsSlice`; no new block/dependency/migration.
 
-- `src/components/OutsetaRegisterLink/index.tsx` — `'use client'`. Exports:
-  - `openOutsetaRegister(e)` — `e.preventDefault()` + `window.Outseta?.auth?.open({ widgetMode: 'register' })`.
-  - `OutsetaRegisterLink` — renders the same `Button`/inline styling as `CMSLink`,
-    anchor `href="#"`, `onClick={openOutsetaRegister}`.
-- `src/components/Link/index.tsx` — after computing `href`, if `href === '#o-register'`
-  delegate to `<OutsetaRegisterLink appearance size className label>{children}</>`.
-  One conditional; every other link path unchanged (CMSLink stays server for all other hrefs).
-
-**RED:** `tests/int/outsetaRegister.int.spec.ts` (node env) — `openOutsetaRegister`
-calls `preventDefault` and `window.Outseta.auth.open({widgetMode:'register'})` with a
-stubbed `window.Outseta`; no-op-safe when `window.Outseta` is undefined.
-
-**Acceptance:** handler fires the SDK register widget + prevents default; missing SDK
-doesn't throw. `tsc` clean.
-
-## Task 2 — Rebuild `joinSlice` (the page)
-
-**Goal:** `/join` = HighImpact hero (chosen photo, CI-safe) + PricingTiers (2 plans,
-national copy, `#o-register` CTAs) + closing CallToAction → `/contact`. Idempotent seed.
+**Changes**
 
 - `scripts/seed-pages.ts`:
-  - `findMediaByFilename(payload, base)` helper — media `filename like '<base>%'`, return id or `null`.
-  - Rewrite `joinSlice`: resolve hero id from `1080925567501035`; found →
-    `highImpact` hero with `media`, else → `lowImpact` no-media hero (CI/prod fallback).
-    Hero: eyebrow "Join MAPS", h1 "Become a Member", one-line national lead, CTA
-    "Join now" (`#o-register`).
-  - `pricingTiers` block, `columns:'2'`, `anchorId:'membership'`, header "Membership"
-    - short intro. Plans: **Regular Membership** (sworn officers, national eligibility,
-      3-item features, CTA "Join now" → `#o-register`), **Supporting Membership**
-      (civilian support staff, national, features, CTA). No prices (dues unknown → omit).
-  - Closing `callToAction` block — buttons "Join now" (`#o-register`) and "Contact us"
-    (`/contact`, outline).
-  - `META_BY_SLUG['join']` — title + description.
+  - add `bulletList` lexical helper (list + listitem nodes) next to `heading`/`paragraph`.
+  - add `committeesSlice: PageSlice` returning the page (LowImpact hero →
+    `cardGrid` w/ 3 committee cards, each body = intro paragraph + `bulletList` of
+    focus areas → `cta` linking `/join`).
+  - register `committeesSlice` in `PAGE_SLICES`.
+  - add `META_BY_SLUG['about-us/committees']`.
+- `src/Header/seedNav.ts`: add `{ label: 'Committees', href: '/about-us/committees' }`
+  to About Us `items` (after Leadership).
 
-**RED:** `tests/int/join.int.spec.ts` (node env) — the published `join` page: hero
-`type` is `highImpact`|`lowImpact` and has a CTA; layout has a `pricingTiers` block
-with exactly **2 plans**, each plan CTA url === `#o-register`; a `callToAction` block
-links to `/contact`. Structural only → CI-safe (no dependency on the local-only hero object).
+**RED:** `tests/int/committees.int.spec.ts` (node env, mirror `aboutUs.int.spec.ts`):
 
-**Acceptance:** test green; `npm run seed:pages` idempotent; `npm run build` compiles;
-preview `/join` renders hero + tiers, "Join now" opens Outseta. No migration / no `generate:types`.
+- page seeded, `_status === 'published'`, hero type `lowImpact`.
+- layout has `cardGrid` + `cta`; CardGrid has exactly 3 cards, each with a truthy
+  `heading`, and any `lucideIcon` present is in `cardIconNames`.
+- hero links include `/join`.
 
-## Out of scope / flagged
+**GREEN:** implement the slice + helper + nav so the test passes against the seeded DB.
 
-- Real dues/prices, a third tier, Outseta plan UIDs → ask first (spec).
-- Pushing the hero photo to prod/staging bucket → separate media cutover (ADR 0002).
+**Verify:** `seed:pages` (idempotent) → full `test:int` → `generate:types` no-op →
+`build`. Preview `/about-us/committees`.
+
+**Done when:** test green, suite green, build compiles, page renders 3 committee
+cards with bullets and a CTA to `/join`.
