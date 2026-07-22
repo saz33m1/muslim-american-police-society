@@ -163,22 +163,120 @@ const homeSlice: PageSlice = async (payload) => {
   ]
 }
 
+// About Us — rebuilt from the source page (About Us / What We Do / Join Us) with
+// our own blocks: a LowImpact hero, a 3-card CardGrid, and a CTA. Copy mirrors the
+// source. Body lives in the Pages collection (editable in admin), not in a component.
 const aboutUsSlice: PageSlice = async (_payload) => [
-  simplePage(
-    'about-us',
-    'About Us',
-    SITE_NAME,
-    'Placeholder introduction to the organization — its history, membership, and purpose.',
-    [
-      'Placeholder body copy. Describe how the organization started, who it represents, and the community it serves.',
-      'Placeholder body copy. Describe governance, chapters, or partner relationships as they apply.',
+  {
+    slug: 'about-us',
+    title: 'About Us',
+    _status: 'published',
+    hero: {
+      type: 'lowImpact',
+      eyebrow: 'Who we are',
+      richText: richText(
+        heading('About Us', 'h1'),
+        paragraph(
+          'We are a public service organization committed to serving the dynamic and diverse communities within the State of New Jersey. Our membership is comprised of law enforcement officers at the federal, state, county, and municipal levels.',
+        ),
+      ),
+      links: [
+        ctaLink('Our mission', '/about-us/mission'),
+        ctaLink('Meet our leadership', '/about-us/leadership', 'outline'),
+      ],
+    },
+    layout: [
+      {
+        blockType: 'cardGrid',
+        header: {
+          enableHeader: true,
+          eyebrow: 'NJMOS',
+          heading: 'What We Do',
+          anchorId: 'what-we-do',
+        },
+        columns: '3',
+        mediaType: 'none',
+        items: [
+          {
+            heading: 'Community Outreach',
+            lucideIcon: 'megaphone',
+            body: richText(
+              paragraph(
+                'Fostering a positive and productive relationship that benefits both communities and strengthens the fabric of our society.',
+              ),
+            ),
+          },
+          {
+            heading: 'Empowering Future Leaders',
+            lucideIcon: 'star',
+            body: richText(
+              paragraph(
+                'Establishing robust mentorship initiatives for young men and women interested in a career path in law enforcement.',
+              ),
+            ),
+          },
+          {
+            heading: 'Creating Strong Connections',
+            lucideIcon: 'network',
+            body: richText(
+              paragraph(
+                'Building camaraderie, mutual support, and unity among our members — essential to the success of our organization.',
+              ),
+            ),
+          },
+        ],
+      },
+      {
+        blockType: 'cta',
+        richText: richText(
+          heading('Join Us', 'h2'),
+          paragraph(
+            'Join our nonprofit organization today. Together we can create positive change and support those in need.',
+          ),
+        ),
+        links: [ctaLink('Learn more', '/join')],
+      },
     ],
-    [ctaLink('Our mission', '/about-us/mission')],
-  ),
+  } as unknown as PageData,
   simplePage('about-us/mission', 'Mission', 'About Us', 'Placeholder mission statement.', [
     'Placeholder mission copy. State the organization’s mission in its own words.',
     'Placeholder values copy. List the values that guide the work.',
   ]),
+]
+
+// Leadership — renders the `team` collection through the Team block (grouped,
+// airy) under About Us. The hero carries the page title; the grouped layout
+// labels each category section (e.g. "Executive Board"), so the block's own
+// header is left off to avoid a redundant heading. Sourced from the collection,
+// so editing a member in admin updates this page with no reseed.
+const leadershipSlice: PageSlice = async (_payload) => [
+  {
+    slug: 'about-us/leadership',
+    title: 'Leadership',
+    _status: 'published',
+    hero: {
+      type: 'lowImpact',
+      eyebrow: 'About Us',
+      richText: richText(
+        heading('Leadership', 'h1'),
+        paragraph(
+          'The Executive Board members whose leadership, expertise, and dedication drive our mission forward.',
+        ),
+      ),
+      links: [],
+    },
+    layout: [
+      {
+        blockType: 'team',
+        header: { enableHeader: false, anchorId: 'team' },
+        layout: 'grouped',
+        density: 'airy',
+        populateBy: 'collection',
+        categories: [],
+        limit: 0,
+      },
+    ],
+  } as unknown as PageData,
 ]
 
 const programsSlice: PageSlice = async (_payload) => [
@@ -409,6 +507,7 @@ const postsSlice: PageSlice = async (payload) => {
 const PAGE_SLICES: PageSlice[] = [
   homeSlice,
   aboutUsSlice,
+  leadershipSlice,
   programsSlice,
   resourcesSlice,
   joinSlice,
@@ -479,11 +578,15 @@ const META_BY_SLUG: Record<string, { title: string; description: string }> = {
   'about-us': {
     title: 'About Us',
     description:
-      'Placeholder meta description. Summarize who the organization is and who it serves.',
+      'A public service organization of Muslim American law enforcement officers serving communities across New Jersey.',
   },
   'about-us/mission': {
     title: 'Mission',
     description: 'Placeholder meta description. Summarize the mission statement.',
+  },
+  'about-us/leadership': {
+    title: 'Leadership',
+    description: 'Meet the Executive Board of ' + SITE_NAME + '.',
   },
   programs: {
     title: 'Programs',
