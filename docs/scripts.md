@@ -39,6 +39,8 @@ Run directly with tsx (no npm script). Each skips work already done.
 
 | Script | What | Safety |
 |---|---|---|
+| `node --import tsx/esm scripts/import-team.ts` | Import the NJMOS Executive Board (names, titles, order) into the `team` collection under an "Executive Board" category; uploads the real headshots, skips placeholder photos. Member list is inline in the script. | Idempotent (upsert by name). |
+| `node --import tsx/esm scripts/import-photos.ts` | Import the gitignored `migration/{high_res,medium_res}` photos (314) into Media, filed into a **Photo Library** folder with Landscape/Portrait/Square subfolders. Alt text from `migration/_captions.json` (AI-generated), generic fallback otherwise. | Idempotent (upsert by stored filename; re-run applies captions). Local MinIO. |
 | `node --import tsx/esm scripts/set-focal.ts` | Bias CardGrid card focal points toward the top (heads stay in the object-cover crop). Skips images already moved off-centre. | Idempotent. |
 | `npx tsx scripts/trim-logo-padding.ts` | `sharp.trim()` baked-in padding off partner logos so object-contain scales the real artwork consistently. | Idempotent. |
 | `node --import tsx/esm scripts/purge-junk-pages.ts` | Drop `E2E CRUD*` test pages and empty autosave-orphan drafts from the shared dev DB. | Idempotent. Dev DB only. |

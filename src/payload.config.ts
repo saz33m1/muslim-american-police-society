@@ -112,14 +112,17 @@ export default buildConfig({
     user: Users.slug,
     // Local dev convenience: prefill the admin login form so you don't retype
     // creds. Guarded to development — prod/staging run NODE_ENV=production, where
-    // this is `false` and never renders. Override the creds via env; set
-    // `prefillOnly: false` to skip the login screen and auto-authenticate.
+    // this is `false` and never renders. Also off under CI: the e2e suite drives
+    // its own login, and auto-auth would redirect /admin/login past the form the
+    // login helper fills. Override the creds via env; set PAYLOAD_AUTOLOGIN_PREFILL=1
+    // to only prefill instead of skipping the login screen.
     autoLogin:
-      process.env.NODE_ENV === 'development'
+      process.env.NODE_ENV === 'development' && !process.env.CI
         ? {
             email: process.env.PAYLOAD_AUTOLOGIN_EMAIL || 'dev@payloadcms.com',
             password: process.env.PAYLOAD_AUTOLOGIN_PASSWORD || 'test',
-            prefillOnly: true,
+            // Full auto-auth by default; set PAYLOAD_AUTOLOGIN_PREFILL=1 to only prefill.
+            prefillOnly: process.env.PAYLOAD_AUTOLOGIN_PREFILL === '1',
           }
         : false,
     livePreview: {

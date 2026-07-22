@@ -6,7 +6,7 @@ import { appErrors, trackConsoleErrors } from '../helpers/e2e'
 // interior [...slug] page. Each must load, show a non-empty h1, and not log any
 // app-owned console error. (#121)
 const PAGES: { path: string; h1?: RegExp }[] = [
-  { path: '/', h1: /Muslim officers/i },
+  { path: '/', h1: /Building bridges/i },
   { path: '/programs', h1: /Programs/i },
   { path: '/about-us' },
   { path: '/about-us/mission' },
