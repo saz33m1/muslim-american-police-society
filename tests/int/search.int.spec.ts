@@ -10,7 +10,7 @@ import config from '@/payload.config'
 import { collectionHref } from '@/utilities/collectionHref'
 import { rankSearchResults, type RankableDoc } from '@/search/rank'
 
-import { describe, it, beforeAll, expect } from 'vitest'
+import { describe, it, beforeAll, afterAll, expect } from 'vitest'
 
 let payload: Payload
 
@@ -48,6 +48,19 @@ const lex = (text: string) => ({
 describe('search indexing (issues #244/#245)', () => {
   beforeAll(async () => {
     payload = await getPayload({ config: await config })
+  })
+
+  // Delete everything this run created — all fixtures carry the per-run `uniq`
+  // token in their slug (or filename), so a substring match sweeps them without
+  // touching real content. Without this the verify page/post/category and the
+  // team member + "Verify Team Cat" category leak into the shared dev DB and, since
+  // the team block shows every category, surface as sections on live team pages.
+  afterAll(async () => {
+    if (!payload) return
+    for (const collection of ['team', 'posts', 'pages', 'team-categories', 'categories'] as const) {
+      await payload.delete({ collection, where: { slug: { like: uniq } }, context })
+    }
+    await payload.delete({ collection: 'media', where: { filename: { like: uniq } }, context })
   })
 
   // #244: result links resolve per source collection, home maps to root.
