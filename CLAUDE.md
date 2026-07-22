@@ -62,6 +62,14 @@ Two suites (`test:int` Vitest in `tests/int/`, `test:e2e` Playwright in `tests/e
 
 ## Deployment (Railway)
 
+> **Status: not yet provisioned.** Everything below is the _intended_ deployment
+> design — the supporting code is committed (`railway.json`, the `refresh-*` scripts,
+> the `src/proxy.ts` staging gate, ADRs 0002/0003) but no Railway project, staging
+> environment, auto-deploy, or custom domain exists yet. Until Railway is stood up:
+> `master` and `staging` are **git branches only**, merging to `master` deploys
+> **nothing**, and the refresh/deploy commands here have no target. Treat this section
+> as the setup spec, not live behavior, and drop this banner once infra is live.
+
 Prod runs on **Railway** (US East): one project with the web service, managed Postgres, and a Storage Bucket for media, on a single bill. `railway.json` drives it: NIXPACKS builder, `npm run payload -- migrate` as the `preDeployCommand`, healthcheck on `/`. Prod runs the Postgres adapter with `push: false`, so **schema changes need a committed migration** (`npm run payload -- migrate:create`); dev still auto-pushes. Baseline migration: `src/migrations/20260703_032255_initial`.
 
 **DB-backed routes are `force-dynamic` (SSR).** Home, the `[...slug]` catch-all, and the post route export `dynamic = 'force-dynamic'`. Managed build containers have no DB, so nothing can prerender (`generateStaticParams` is guarded to return `[]` when the build DB is unreachable) and the pages call `draftMode()`, which throws `DYNAMIC_SERVER_USAGE` under static generation. Upside: content edits go live with no redeploy, since every request re-queries.
