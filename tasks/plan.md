@@ -6,12 +6,12 @@ Resend adapter is already wired in `payload.config.ts` (gated on `RESEND_API_KEY
 console fallback). No adapter work — the form just needs an `emails` entry to
 deliver once the key is set.
 
-## Task 1 — Rebuild /contact with a Resend-delivered form
+## Task 1 — Rebuild /contact with a Resend-delivered form ✅ done
 
 **Goal:** replace the placeholder `contactSlice` with a LowImpact hero + a
 `FormBlock` bound to a seeded Contact form (Full Name*, Email*, Phone, Message*),
 whose notification `emails` entry delivers to `CONTACT_INBOX_EMAIL || ADMIN_EMAIL`
-from `EMAIL*FROM**` via the existing Resend adapter.
+from `EMAIL*FROM\*\*` via the existing Resend adapter.
 
 **Changes**
 

@@ -27,7 +27,7 @@ import configPromise from '@payload-config'
 import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import type { Payload } from 'payload'
 
-import { SITE_NAME } from '../src/utilities/brand'
+import { SITE_NAME, EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME } from '../src/utilities/brand'
 import { OUTSETA_REGISTER_HREF } from '../src/components/OutsetaRegisterLink'
 
 type PageData = RequiredDataFromCollectionSlug<'pages'>
@@ -124,6 +124,29 @@ const findMediaByFilename = async (payload: Payload, base: string): Promise<numb
     depth: 0,
   })
   return (res.docs[0]?.id as number | undefined) ?? null
+}
+
+// Upsert a form-builder `forms` doc by title; returns its id. Upsert (not
+// create-only) so re-running seed:pages after changing EMAIL_FROM_ADDRESS /
+// CONTACT_INBOX_EMAIL re-bakes the new sender/recipient into the form's emails —
+// same "code is authoritative" model as the page upserts below.
+const ensureForm = async (
+  payload: Payload,
+  data: RequiredDataFromCollectionSlug<'forms'>,
+): Promise<number> => {
+  const existing = await payload.find({
+    collection: 'forms',
+    where: { title: { equals: data.title } },
+    limit: 1,
+    depth: 0,
+  })
+  const found = existing.docs[0]?.id as number | undefined
+  if (found != null) {
+    await payload.update({ collection: 'forms', id: found, data })
+    return found
+  }
+  const created = await payload.create({ collection: 'forms', data })
+  return created.id as number
 }
 
 // ---------------------------------------------------------------------------
@@ -517,11 +540,93 @@ const donateSlice: PageSlice = async (_payload) => [
   ]),
 ]
 
-const contactSlice: PageSlice = async (_payload) => [
-  simplePage('contact', 'Contact', SITE_NAME, 'Placeholder contact introduction.', [
-    'Placeholder contact copy. Add the organization’s email addresses, mailing address, or a form block built in the admin.',
-  ]),
-]
+// Contact form (form-builder). Fields mirror the source contact page; the
+// notification email is delivered by the Resend adapter (payload.config, gated on
+// RESEND_API_KEY — console fallback until the key is set). Sender is EMAIL_FROM_*;
+// recipient is CONTACT_INBOX_EMAIL, falling back to ADMIN_EMAIL. Baked into the
+// doc at seed time, so re-run seed:pages after changing those env vars.
+const CONTACT_FORM = {
+  title: 'Contact Form',
+  submitButtonLabel: 'Submit',
+  confirmationType: 'message',
+  confirmationMessage: richText(
+    heading("Thanks — your message has been received. We'll be in touch soon.", 'h3'),
+  ),
+  fields: [
+    {
+      name: 'name',
+      blockName: 'name',
+      blockType: 'text',
+      label: 'Full Name',
+      required: true,
+      width: 100,
+    },
+    {
+      name: 'email',
+      blockName: 'email',
+      blockType: 'email',
+      label: 'Email',
+      required: true,
+      width: 100,
+    },
+    {
+      name: 'phone',
+      blockName: 'phone',
+      blockType: 'text',
+      label: 'Phone',
+      required: false,
+      width: 100,
+    },
+    {
+      name: 'message',
+      blockName: 'message',
+      blockType: 'textarea',
+      label: 'Message',
+      required: true,
+      width: 100,
+    },
+  ],
+  emails: [
+    {
+      emailTo: process.env.CONTACT_INBOX_EMAIL || process.env.ADMIN_EMAIL || EMAIL_FROM_ADDRESS,
+      emailFrom: `${EMAIL_FROM_NAME} <${EMAIL_FROM_ADDRESS}>`,
+      replyTo: '{{email}}',
+      subject: 'New contact form submission from {{name}}',
+      message: richText(
+        paragraph('Name: {{name}}'),
+        paragraph('Email: {{email}}'),
+        paragraph('Phone: {{phone}}'),
+        paragraph('Message: {{message}}'),
+      ),
+    },
+  ],
+} as unknown as RequiredDataFromCollectionSlug<'forms'>
+
+const contactSlice: PageSlice = async (payload) => {
+  const formId = await ensureForm(payload, CONTACT_FORM)
+  return [
+    {
+      slug: 'contact',
+      title: 'Contact',
+      _status: 'published',
+      hero: {
+        type: 'lowImpact',
+        eyebrow: 'Get in touch',
+        richText: richText(
+          heading('Contact Us', 'h1'),
+          paragraph("We'd love to hear from you. Send us a message and we'll be in touch."),
+        ),
+      },
+      layout: [
+        {
+          blockType: 'formBlock',
+          enableIntro: false,
+          form: formId,
+        },
+      ],
+    } as unknown as PageData,
+  ]
+}
 
 // The members area is gated by src/proxy.ts. /members/portal is deliberately
 // PUBLIC (it is the post-login landing page), so it must exist or hosted login
@@ -780,7 +885,7 @@ const META_BY_SLUG: Record<string, { title: string; description: string }> = {
   },
   contact: {
     title: 'Contact',
-    description: 'Placeholder meta description. Summarize how to get in touch.',
+    description: 'Get in touch with ' + SITE_NAME + ' — send us a message and we will be in touch.',
   },
   'latest-updates': {
     title: 'Latest Updates',
