@@ -1,36 +1,42 @@
-# Plan — `/about-us/committees` page
+# Plan — `/contact` page with form (Resend delivery)
 
-Spec: `SPEC.md`. Branch: `feat/committees` (off `staging`). One task, RED→GREEN→build→commit.
+Spec: `SPEC.md`. Branch: `feat/contact-form` (off `staging`). One task, RED→GREEN→build→commit.
 
-## Task 1 — Seed the Committees page + nav link ✅ done
+Resend adapter is already wired in `payload.config.ts` (gated on `RESEND_API_KEY`,
+console fallback). No adapter work — the form just needs an `emails` entry to
+deliver once the key is set.
 
-**Goal:** a seeded `about-us/committees` page (LowImpact hero + 3-card CardGrid +
-CTA), national MAPS voice, deduped focus-area copy, plus an About Us nav link.
-Clone of `aboutUsSlice`; no new block/dependency/migration.
+## Task 1 — Rebuild /contact with a Resend-delivered form ✅ done
+
+**Goal:** replace the placeholder `contactSlice` with a LowImpact hero + a
+`FormBlock` bound to a seeded Contact form (Full Name*, Email*, Phone, Message*),
+whose notification `emails` entry delivers to `CONTACT_INBOX_EMAIL || ADMIN_EMAIL`
+from `EMAIL*FROM\*\*` via the existing Resend adapter.
 
 **Changes**
 
 - `scripts/seed-pages.ts`:
-  - add `bulletList` lexical helper (list + listitem nodes) next to `heading`/`paragraph`.
-  - add `committeesSlice: PageSlice` returning the page (LowImpact hero →
-    `cardGrid` w/ 3 committee cards, each body = intro paragraph + `bulletList` of
-    focus areas → `cta` linking `/join`).
-  - register `committeesSlice` in `PAGE_SLICES`.
-  - add `META_BY_SLUG['about-us/committees']`.
-- `src/Header/seedNav.ts`: add `{ label: 'Committees', href: '/about-us/committees' }`
-  to About Us `items` (after Leadership).
+  - import `EMAIL_FROM_ADDRESS`, `EMAIL_FROM_NAME` from `../src/utilities/brand`.
+  - `ensureForm(payload, data)` — upsert a `forms` doc by `title`; return its id.
+  - `CONTACT_FORM` data (4 fields, `submitButtonLabel: 'Submit'`,
+    `confirmationMessage`, one env-driven notification `emails` entry).
+  - `contactSlice` → `async (payload)`: resolve `formId` via `ensureForm`, return
+    LowImpact hero + `formBlock { form: formId }`. Replaces the `simplePage`.
+  - update `META_BY_SLUG.contact` to a real one-liner.
+- `.env.example`: document optional `CONTACT_INBOX_EMAIL` (falls back to `ADMIN_EMAIL`).
 
-**RED:** `tests/int/committees.int.spec.ts` (node env, mirror `aboutUs.int.spec.ts`):
+**RED:** `tests/int/contact.int.spec.ts` (node env, mirror `committees.int.spec.ts`):
 
-- page seeded, `_status === 'published'`, hero type `lowImpact`.
-- layout has `cardGrid` + `cta`; CardGrid has exactly 3 cards, each with a truthy
-  `heading`, and any `lucideIcon` present is in `cardIconNames`.
-- hero links include `/join`.
+- `contact` page seeded, `_status === 'published'`, hero `lowImpact`, layout has `formBlock`.
+- referenced form: `submitButtonLabel === 'Submit'`; exactly 4 fields with correct
+  `blockType`/`required`; one `emails` entry whose `subject` contains `{{name}}`
+  and `emailFrom` includes `EMAIL_FROM_ADDRESS`.
 
-**GREEN:** implement the slice + helper + nav so the test passes against the seeded DB.
+**GREEN:** implement the slice + helper so the test passes against the seeded DB.
 
-**Verify:** `seed:pages` (idempotent) → full `test:int` → `generate:types` no-op →
-`build`. Preview `/about-us/committees`.
+**Verify:** `seed:pages` → full `test:int` → `generate:types` no-op → `build`.
+Preview `/contact`: hero + form render; submitting valid data shows the
+confirmation and logs the notification email to the console (key unset).
 
-**Done when:** test green, suite green, build compiles, page renders 3 committee
-cards with bullets and a CTA to `/join`.
+**Done when:** test green, suite green, build compiles, `/contact` renders the
+form and a submission is stored + logged.

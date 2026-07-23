@@ -1,122 +1,155 @@
-# SPEC — /about-us/committees page
+# SPEC — /contact page with form (Resend delivery)
 
 ## 1. Objective
 
-Add a **Committees** page under About Us, based on the source page
-`https://mudduserhm1.sg-host.com/our-committees/`. It explains how the
-organization is structured into focus-area committees and routes interested
-visitors toward membership.
+Replace the placeholder `/contact` page with a real contact page — a short intro
+hero plus a working contact form that emails submissions via **Resend** — based
+on the source site's contact page (`https://mudduserhm1.sg-host.com/contact/`).
 
-- **Slug:** `about-us/committees` (nested, sibling of `about-us/mission` and
-  `about-us/leadership`).
-- **Framing:** National **Muslim American Police Society** (MAPS) — no
-  NJMOS/New Jersey specifics (consistent with the `/join` decision).
-- **Audience:** prospective members and community partners deciding where to
-  plug in.
+- **Slug:** `contact` (exists as a `simplePage` placeholder; rebuilt in place).
+- **Framing:** national **Muslim American Police Society** (MAPS).
+- **Reuse, don't build:** the form-builder plugin, the `forms` collection, the
+  `FormBlock`, **and the Resend email adapter** are all already wired. Only the
+  contact page + the Contact form doc (with its notification email) are new.
 
-Seeded from code like every other page (`scripts/seed-pages.ts`), editable in
-admin thereafter. No new block, no new dependency — reuses the exact about-us
-shape.
+## 2. Email is already wired (Resend)
 
-## 2. Page composition
+`src/payload.config.ts` already configures `@payloadcms/email-resend`, gated on
+`RESEND_API_KEY`:
 
-Mirror `aboutUsSlice` (LowImpact hero → 3-card CardGrid → CTA):
+- Key **unset** (local/CI, and now until the user provides it) → Payload's
+  console "email writer"; submissions still persist to `form-submissions`, they
+  just aren't delivered.
+- Key **set** → Resend delivers each form's `emails`. Sender defaults to
+  `EMAIL_FROM_NAME <EMAIL_FROM_ADDRESS>` (env, falling back to the `brand.ts`
+  constants: `Muslim American Police Society <no-reply@muslimamericanpolicesociety.org>`).
 
-1. **LowImpact hero** (no media, matching its About Us siblings)
-   - eyebrow: `How we're organized`
-   - h1: `Committees`
-   - lede: one sentence — MAPS is structured into committees, each owning a
-     distinct area of focus, so members can engage where they have the most
-     impact.
-   - links: `[ Become a member → /join, Contact us → /contact (outline) ]`
+So "use Resend" needs **no adapter code** — it needs the Contact form to carry an
+`emails` entry so there is something to deliver once the key is added. The user
+will provide `RESEND_API_KEY` (and verify the sending domain) later; nothing here
+blocks on it.
 
-2. **CardGrid** — `columns: '3'`, `mediaType: 'none'`, `anchorId: 'committees'`,
-   header eyebrow `MAPS` / heading `Our Committees`. Three cards, one per
-   committee; each card body = a short intro paragraph + a **bulleted focus-area
-   list**. Deduped copy (source repeats the first two verbatim):
+## 3. Page composition
 
-   | Card                     | lucideIcon  | Focus areas (bullets)                                           |
-   | ------------------------ | ----------- | --------------------------------------------------------------- |
-   | **Community Outreach**   | `megaphone` | Education & information, event planning, community partnerships |
-   | **Membership Services**  | `users`     | Recruiting & onboarding, mentoring, scholarships, member events |
-   | **Business Development** | `handshake` | Corporate partnerships, sponsorships, fundraising               |
+Rebuild `contactSlice` (currently a bare `simplePage`) as:
 
-   (Confirm each `lucideIcon` is in `src/blocks/CardGrid/icons.ts`; substitute
-   the nearest listed name if not.)
+1. **LowImpact hero** (no media)
+   - eyebrow: `Get in touch`
+   - h1: `Contact Us`
+   - lede: "We'd love to hear from you. Send us a message and we'll be in touch."
 
-3. **CTA** (`blockType: 'cta'`)
-   - h2 `Get involved`, one paragraph inviting members to join a committee.
-   - links: `[ Become a member → /join ]`
+2. **FormBlock** (`blockType: 'formBlock'`)
+   - `form`: the seeded Contact form's id (§4).
+   - `enableIntro: false` (hero carries the heading).
 
-## 3. Implementation (scope of changes)
+Form-only (contact email / social already live in the footer).
 
-All in `scripts/seed-pages.ts` unless noted:
+## 4. The Contact form (`forms` collection)
 
-1. **`bulletList` lexical helper** — none exists yet; add one next to
-   `heading`/`paragraph`:
-   ```ts
-   const listItem = (value: string, i: number) => node('listitem', { value: i + 1 }, [text(value)])
-   const bulletList = (...items: string[]) =>
-     node(
-       'list',
-       { listType: 'bullet', tag: 'ul', start: 1 },
-       items.map((v, i) => listItem(v, i)),
-     )
-   ```
-2. **`committeesSlice: PageSlice`** — returns the single PageData above (cast
-   `as unknown as PageData` like the others). Card `body` =
-   `richText(paragraph(intro), bulletList(...focusAreas))`.
-3. Register `committeesSlice` in `PAGE_SLICES`.
-4. Add `META_BY_SLUG['about-us/committees']` = `{ title: 'Committees',
-description: 'The committees of ' + SITE_NAME + ' and the focus areas each one leads.' }`.
-5. **Nav** — add `{ label: 'Committees', href: '/about-us/committees' }` to the
-   About Us `items` in `src/Header/seedNav.ts` (after Leadership). Idempotent
-   seed only fills an empty global, so this shows on fresh DBs / CI e2e; an
-   existing dev/prod nav needs the same link added by hand in admin.
+Seed idempotently from `scripts/seed-pages.ts` (the `FormBlock.form` relationship
+needs a `forms` id before the page can reference it).
 
-**No** new block, config, component, migration, or type change — CardGrid and
-LowImpact already exist, so `generate:types` / migration guard are untouched.
+**Fields** (form-builder field blocks, `width` 100):
 
-## 4. Code style
+| name      | blockType  | Label     | Required |
+| --------- | ---------- | --------- | -------- |
+| `name`    | `text`     | Full Name | ✅       |
+| `email`   | `email`    | Email     | ✅       |
+| `phone`   | `text`     | Phone     | —        |
+| `message` | `textarea` | Message   | ✅       |
 
-- Follow the existing slice idioms exactly: `richText`/`heading`/`paragraph`
-  helpers, `ctaLink(label, url, appearance?)`, `PageData` cast, `_status:
-'published'`.
-- Tokens/`.type-*` only — no styling work (blocks already own their styles).
-- Reuse; don't fork. Bullet list is the one genuinely-missing primitive.
+- Phone is **text**, not the template's `number` (number strips `+1` / leading zeros).
+- `submitButtonLabel: 'Submit'`.
+- `confirmationType: 'message'`, `confirmationMessage` (richText h3): "Thanks —
+  your message has been received. We'll be in touch soon."
+- `title: 'Contact Form'`.
 
-## 5. Testing strategy
+**`emails` (the Resend deliverable)** — one notification to the org inbox:
 
-New int spec `tests/int/committees.int.spec.ts` (node env, mirror
-`aboutUs.int.spec.ts`). Assert on the seeded `about-us/committees` page:
+- `emailTo`: `process.env.CONTACT_INBOX_EMAIL || process.env.ADMIN_EMAIL`
+  (baked into the form doc at seed time; ADMIN_EMAIL is already set locally).
+- `emailFrom`: `` `${EMAIL_FROM_NAME} <${EMAIL_FROM_ADDRESS}>` `` (env-or-brand
+  constants, imported from `@/utilities/brand`).
+- `replyTo`: `{{email}}` (so replying in the inbox goes to the submitter).
+- `subject`: `New contact form submission from {{name}}`.
+- `message` (richText): a line each for name / email / phone / message using the
+  `{{field}}` tokens the form-builder substitutes.
 
-- exists, `_status === 'published'`, hero type `lowImpact`.
-- layout contains a `cardGrid` and a `cta`.
-- the CardGrid has exactly **3** cards, each with a truthy `heading`, and any
-  `lucideIcon` present is in `cardIconNames` (guards the empty-chip trap).
-- hero links include `/join`.
+(No autoresponder to the submitter — the on-page `confirmationMessage` already
+confirms receipt. Add one later if wanted.)
 
-Run: `npx vitest run --config ./vitest.config.mts tests/int/committees.int.spec.ts`.
-Then `seed:pages` (idempotent) → `generate:types` no-op check → `build`.
-Verify in preview at `/about-us/committees` (renders 3 committee cards with
-bullets, CTA to /join).
+**reCAPTCHA:** `verifyRecaptcha` (beforeValidate) is env-gated — a no-op when the
+reCAPTCHA env is unset, so the form submits/stores without a token locally/CI.
 
-## 6. Boundaries
+## 5. Implementation (scope of changes)
 
-**Always:** national MAPS voice; reuse CardGrid/LowImpact; seed from code;
-keep the change to `seed-pages.ts` + `seedNav.ts` + one test; commit message /
-PR text as if written solely by the author (no AI/co-author trailers); PR base
-= **`staging`**.
+1. **`scripts/seed-pages.ts`**
+   - `import { EMAIL_FROM_ADDRESS, EMAIL_FROM_NAME } from '../src/utilities/brand'`
+     (SITE_NAME is already imported from there).
+   - **`ensureForm(payload, data)` helper** — **upsert by `title`**: find a
+     `forms` doc by title; if found `payload.update` it with `data` and return
+     its id, else `payload.create` and return the new id. Upsert (not
+     create-only) so re-running `seed:pages` after setting `EMAIL_FROM_ADDRESS` /
+     `CONTACT_INBOX_EMAIL` re-bakes the new sender/recipient — matches how Pages
+     are upserted every run and what `.env.example` instructs.
+   - **`contactSlice`** becomes `async (payload) =>`: build `CONTACT_FORM` data
+     (§4) with the existing `richText`/`heading`/`paragraph` helpers, resolve
+     `const formId = await ensureForm(payload, CONTACT_FORM)`, return the page
+     (LowImpact hero + `formBlock` with `form: formId`). Replaces the
+     `simplePage('contact', …)`.
+   - Update `META_BY_SLUG.contact` from placeholder to a real national-MAPS
+     one-liner.
+2. **`.env.example`** — document the optional `CONTACT_INBOX_EMAIL` (falls back
+   to `ADMIN_EMAIL`) next to the existing Resend block.
 
-**Ask first:** adding a hero image (deliberately omitted to match the About Us
-family — upgrade path: switch hero to `highImpact` + a Photo Library group
-photo via `findMediaByFilename` with a LowImpact fallback, exactly like
-`joinSlice`); adding a 4th committee; any new block or dependency.
+No new block/collection/dependency; `forms` + `formBlock` + the Resend adapter
+already exist in the committed schema, so `generate:types` is a no-op and the
+migration guard stays green. `contactSlice` is already in `PAGE_SLICES`.
 
-**Never:** hardcode hex/px; edit generated files by hand (`payload-types.ts`,
-`importMap.js`); mass-push content over prod; open the PR against `master`.
+## 6. Code style
+
+- Reuse existing lexical + page idioms; model the form-field shape on
+  `src/endpoints/seed/contact-form.ts` (same keys) but author fresh for the MAPS
+  copy, text phone, required message, and the env-driven `emails`. Don't import
+  the template's demo-email object.
+- Tokens/`.type-*` only; no styling work.
+
+## 7. Testing strategy
+
+New int spec `tests/int/contact.int.spec.ts` (node env, mirror
+`committees.int.spec.ts`). Against the seeded `contact` page:
+
+- exists, `_status === 'published'`, hero type `lowImpact`; layout has a `formBlock`.
+- resolve the referenced form; assert `submitButtonLabel === 'Submit'`, exactly
+  the four fields with the right `blockType`/`required`, and that it has one
+  `emails` entry whose `subject` contains `{{name}}` and whose `emailFrom`
+  includes `EMAIL_FROM_ADDRESS` (proves the Resend wiring, without needing a key).
+
+Run: `npx vitest run --config ./vitest.config.mts tests/int/contact.int.spec.ts`.
+Then `seed:pages` → full `test:int` → `generate:types` no-op → `build`. Verify in
+preview: `/contact` renders hero + form; submitting valid data shows the
+confirmation message, creates a `form-submissions` doc, and (key unset) logs the
+notification email to the dev-server console.
+
+## 8. Boundaries
+
+**Always:** reuse FormBlock + `forms` + the existing Resend adapter; seed from
+code; keep changes to `seed-pages.ts` + `.env.example` + one test; national MAPS
+voice; commit / PR text as if written solely by the author (no AI/co-author
+trailers); PR base = **`staging`**.
+
+**Ask first:** adding an autoresponder to the submitter; adding a ContactDetails /
+social block; changing form fields beyond the four; the actual `RESEND_API_KEY` /
+sending-domain setup (user does this in Resend + env, not in code); any new block
+or dependency.
+
+**Never:** hardcode hex/px or secrets; commit a real `RESEND_API_KEY`; edit
+generated files by hand (`payload-types.ts`, `importMap.js`); route submissions
+anywhere but the `forms` / `form-submissions` pipeline; mass-push content over
+prod; open the PR against `master`.
 
 ---
 
-_Deliberately lazy: no hero image, no new block, no committee-detail subpages —
-the source page has none. Add any of them only when real content exists._
+_Deliberately lazy: Resend, the form-builder stack, and the field shape all
+already exist — the only new code is an upsert-form helper, the rebuilt contact
+slice with an env-driven notification email, and one `.env.example` line._
